@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Durga Choice Center Armarikala</title>
+<style>
+body {margin:0; font-family:Arial, sans-serif; background:#f4f4f4;}
+header {background:#c10000; padding:20px; text-align:center; color:white; font-size:50px; font-weight:bold; font-family:'Oswald',sans-serif;}
+nav {background:#003366; padding:10px; display:flex; flex-wrap:wrap; align-items:center; gap:10px;}
+nav a {color:white; text-decoration:none; margin:8px 15px; font-size:16px; font-weight:bold;}
+.notice {padding:20px; text-align:center; font-size:18px;}
+.btn-box {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; padding:20px;}
+.btn-box a{text-decoration:none; color:inherit;}
+.card {background:#fff; padding:20px; text-align:center; font-size:20px; border-radius:10px; cursor:pointer; box-shadow:0 6px 12px rgba(0,0,0,0.25); transition: transform 0.2s ease, box-shadow 0.2s ease;}
+.card:hover {transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.35);}
+.red{background:#ff4d4d;} .yellow{background:#ffcc00;} .blue{background:#3399ff;} .green{background:#33cc33;}
+.chocolate{background:#D2691E;} .brown{background:#A52A2A;} .coral{background:#FF7F50;} .darkblue{background:#00008B;}
+.darkorange{background:#FF8C00;} .gold{background:#FFD700;} .cyan{background:#00FFFF;} .purple{background:#800080;}
+.fuchsia{background:#FF00FF;} .maroon{background:#800000;}
+.container {width:95%; margin:auto; display:flex; gap:20px; padding:30px 0; flex-wrap:wrap;}
+.box {flex:1; background:#fff; border:1px solid #ccc; border-radius:5px; min-width:250px;}
+.box h2 {text-align:center; margin:0; padding:12px; background:#b50707; color:white; font-size:22px;}
+ul {list-style-type:square; padding:20px; margin:0;}
+ul li {margin-bottom:10px;}
+ul li a {text-decoration:none; color:#0033cc; font-size:15px;}
+ul li a:hover {text-decoration:underline; color:#000;}
+@media(max-width:900px){.container{flex-direction:column;} .search-box{width:100%;}}
+.search-box{width:350px; display:flex; align-items:center; gap:5px; margin-top:10px;}
+.search-box input{width:100%; padding:10px; border:2px solid #555; border-radius:10px; font-size:14px;}
+.search-box button{padding:10px 20px; border:none; background:#007bff; color:white; font-size:14px; border-radius:10px; cursor:pointer;}
+.wa-float{position:fixed; bottom:20px; right:20px; display:flex; align-items:center; text-decoration:none; z-index:999999;}
+.wa-icon img{width:55px; height:55px; border-radius:50%; box-shadow:0 0 15px rgba(37,211,102,0.8); animation:glow 1.5s infinite alternate;}
+@keyframes glow{from{box-shadow:0 0 10px rgba(37,211,102,0.7);} to{box-shadow:0 0 20px rgba(37,211,102,1);}}
+.wa-text{margin-left:10px; background:#25D366; color:white; padding:10px 15px; border-radius:30px; font-size:16px; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3); opacity:0; transform:translateX(20px); transition: all 0.5s ease;}
+.wa-float:hover .wa-text{opacity:1; transform:translateX(0); background:#1ebe5b; cursor:pointer;}
+#searchResultBox{position:absolute; top:60px; right:20px; width:300px; max-height:400px; overflow-y:auto; background:white; border:2px solid #007bff; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.3); display:none; z-index:9999; padding:10px;}
+#searchResultBox a{display:block; margin:5px 0; color:#0033cc; font-weight:bold; text-decoration:none;}
+#searchResultBox a:hover{color:#ff4d4d; text-decoration:underline;}
+#searchResultBox .closeBox{display:block; text-align:right; font-weight:bold; color:red; cursor:pointer; margin-bottom:5px;}
+
+/* Responsive for mobile */
+@media(max-width: 500px) {
+  #result {width: 95%; font-size: 16px; padding: 15px;}
+  .search-box {width: 95%; flex-direction: column; gap: 10px;}
+  .search-box button {width: 100%;}
+}
+
+.footer {background:#001f3f; color:white; margin-top:40px; padding:40px 0 10px 0;}
+.footer-container {width:90%; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;}
+.footer-box h3 {font-size:20px; margin-bottom:10px; border-left:5px solid #ffcc00; padding-left:10px;}
+.footer-box p, .footer-box a{font-size:15px; color:#e6e6e6; text-decoration:none;}
+.footer-box a:hover{color:#ffcc00;}
+.footer-bottom{text-align:center; background:#000d1a; padding:12px; margin-top:25px; font-size:14px; color:#cccccc;}
+
+.more-btn {display:block; text-align:center; margin:10px auto; padding:12px 25px; background:#007bff; color:white; font-size:16px; border:none; border-radius:10px; cursor:pointer;}
+.more-btn:hover {background:#0056b3;}
+
+.pro-note {
+    background: #fff8d1;
+    border-left: 6px solid #f5b400;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    animation: fadeIn 0.8s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .note-header {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .note-body {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .note-buttons {
+    margin-top: 15px;
+  }
+
+  .btn {
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  .whatsapp {
+    background: #25D366;
+    color: white;
+  }
+
+  .call {
+    background: #007bff;
+    color: white;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<header>Durga Choice Center Armarikala</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="latestjob.html">Latest Job</a>
+  <a href="admitcurd.html">Admit Card</a>
+  <a href="result.html">Result</a>
+  <a href="admission.html">Admission</a>
+  <a href="syllaus.html">Syllabus</a>
+  
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search here..." onkeyup="search()">
+    <button onclick="search()">Search</button>
+  </div>
+
+  <a href="https://wa.me/+917773868330" target="_blank" class="wa-float">
+    <div class="wa-icon"><img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp"></div>
+    <span class="wa-text">Chat Now</span>
+  </a>
+</nav>
+
+<div id="searchResultBox">
+  <span class="closeBox" onclick="closeSearchBox()">X</span>
+  <div id="searchResults"></div>
+</div>
+
+<div class="notice">
+  <strong style="color:darkblue; font-size:20px;"></strong>
+  <marquee behavior="scroll" direction="left" style="font-size:18px; color:darkblue;">
+    "ओम कृष्णाय वासुदेवाय <span style='color:darkorange;'>हरये परमात्मने,</span><span style='color:darkred;'> प्रणतः क्लेशनाशाय</span><span style='color:gold;'> गोविंदाय नमो नमः"।</span>
+  </marquee>
+  <p>Get Online Form, Results, Admit Card, Answer Key, Syllabus, Career News, Sarkari Yojana, Scholarship, Sarkari Notice etc.</p>
+  
+</div>
+
+<h2 style="text-align:center; color:#003366;">Important Links</h2>
+<div class="btn-box" id="cardContainer">
+  <!-- Cards inserted via JS for toggle -->
+</div>
+
+<div class="btn-box" id="cardContainer">
+  <!-- Cards inserted via JS for toggle -->
+</div>
+<div class="btn-box">
+    <div class="card red"><a href="#" style="color:white;">
+
+"Coming soon" </a></div>
+    <div class="card yellow"><a href="#" style="color:white;">"Coming soon" </a></div>
+
+
+
+    </div>
+    <script>
+// Full card data
+const allCards = [
+{name:"Sarkari Result",url:"https://sarkariresult.com.cm/",color:"red"},
+{name:"FreeJobAlert.Com",url:"https://www.freejobalert.com/",color:"yellow"},
+{name:"सरकारी नौकरी",url:"#",color:"blue"},
+{name:"Agri Stack",url:"https://cgfr.agristack.gov.in/farmer-registry-cg/#/",color:"green"},
+{name:"छत्तीसगढ़ भू-अ. Bhuiyan",url:"https://revenue.cg.nic.in/bhuiyanuser/User/Selection_Report_For_KhasraDetail.aspx",color:"yellow"},
+{name:"छत्तीसगढ़ ई-डिस्ट्रिक्ट",url:"https://cgedistrict.cgstate.gov.in/home?lang=hi",color:"blue"},
+{name:"जन भागीदारी",url:"https://fcs.cg.gov.in/citizen/",color:"red"},
+{name:"रोज़गार इच्छुक - पंजीयन",url:"https://erojgar.cg.gov.in/MainSite/JobSeeker/RegistrationWithAdhar.aspx",color:"green"},
+{name:"छत्तीसगढ़ श्रम विभाग",url:"https://shramevjayate.cg.gov.in/",color:"yellow"},
+{name:"Pt. Ravishankar Shukla University",url:"https://www.prsu.ac.in/",color:"red"},
+{name:"Hemchand Yadav University",url:"https://www.durguniversity.ac.in/",color:"chocolate"},
+{name:"Govt Science College, Durg",url:"https://www.govtsciencecollegedurg.ac.in/",color:"brown"},
+{name:"Madanlal Sahu Govt College Armarikala",url:"https://gc-armarikala.in/",color:"coral"},
+{name:"ITI Admissions",url:"https://cgiti.admissions.nic.in/",color:"darkblue"},
+{name:"CG Vyapam",url:"https://vyapamprofile.cgstate.gov.in/online/",color:"darkorange"},
+{name:"MY AADHAR",url:"https://myaadhaar.uidai.gov.in/",color:"gold"},
+{name:"Voter Card",url:"https://voters.eci.gov.in/login",color:"cyan"},
+{name:"ABC ID",url:"https://www.abc.gov.in/",color:"purple"},
+{name:"CG Post Matric Scholarship",url:"https://postmatric-scholarship.cg.nic.in/LoginPage.aspx",color:"fuchsia"},
+{name:"नगर सेना",url:"https://firenoc.cg.gov.in/",color:"maroon"},
+{name:"RRB",url:"#",color:"blue"},
+{name:"BSF",url:"https://rectt.bsf.gov.in/",color:"brown"},
+{name:"PEN-CURD",url:"https://apnapanindia.co.in/index.php?msg=Logout%20Successfully.",color:"yellow"},
+{name:"Ayushman Bharat",url:"https://beneficiary.nha.gov.in/",color:"red"},
+{name:"SSC/GD",url:"https://sscsr.gov.in/indexes/candidate_corner_admitcard",color:"cyan"},
+{name:"JEE MAIS",url:"#",color:"brown"},
+{name:"SCERT CG",url:"#",color:"darkorange"},
+{name:"CG Transport / HSRP",url:"https://cgtransport.gov.in/#",color:"green"},
+{name:"Vahan Citizen Services",url:"https://vahan.parivahan.gov.in/vahanservice/vahan/ui/statevalidation/homepage.xhtml",color:"blue"},
+{name:"PDF-Resize",url:"https://pdf.pi7.org/resize-pdf",color:"red"},
+{name:"All-Type-Resize",url:"https://www.sarkariresultcm.in/free-online-photo-resizer/",color:"yellow"},
+{name:"BG-Remove",url:"https://www.remove.bg/",color:"blue"},
+{name:"Resume & CV Maker",url:"https://sarkariresulttools.net/resume-maker/",color:"green"},
+{name:"Add Name & Date",url:"https://sarkaricsc.com/sarkari-tools/",color:"red"}
+];
+
+const cardContainer = document.getElementById("cardContainer");
+const moreBtn = document.getElementById("moreBtn");
+
+let showingAll = false;
+
+function renderCards() {
+  cardContainer.innerHTML = "";
+  let displayCards = showingAll ? allCards : allCards.slice(0,4);
+  displayCards.forEach(card=>{
+    let div = document.createElement("div");
+    div.className = `card ${card.color}`;
+    let a = document.createElement("a");
+    a.href = card.url;
+    a.target="_blank";
+    a.textContent = card.name;
+    a.style.color="white";
+    div.appendChild(a);
+    cardContainer.appendChild(div);
+  });
+  moreBtn.textContent = showingAll ? "Show Less" : "More Curd / Sides";
+}
+
+function showMore() {
+  showingAll = !showingAll;
+  renderCards();
+}
+
+renderCards();
+
+// Search functionality
+const siteData = allCards.map(c=>({name:c.name,url:c.url}));
+
+function search(){
+  let input=document.getElementById('searchInput').value.toLowerCase();
+  let box=document.getElementById('searchResultBox');
+  let resultsDiv=document.getElementById('searchResults');
+  resultsDiv.innerHTML='';
+  if(input===''){box.style.display='none'; return;}
+  let results=siteData.filter(item=>item.name.toLowerCase().includes(input));
+  if(results.length>0){results.forEach(item=>{let a=document.createElement('a'); a.href=item.url; a.target="_blank"; a.textContent=item.name; resultsDiv.appendChild(a);});}
+  else{resultsDiv.innerHTML='<div>No results found.</div>';}
+  box.style.display='block';
+}
+
+function closeSearchBox(){document.getElementById('searchResultBox').style.display='none'; document.getElementById('searchInput').value='';}
+</script>
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-box">
+        <h3>About Us</h3>
+        <p>Durga Choice Center Armarikala – All Online Forms, Sarkari Yojana, Govt Services, Exam Forms, Result, Admit Card & More.</p>
+      </div>
+      <div class="footer-box">
+        <h3>Contact Us</h3>
+        <p><b>Owner:</b> Thaneshwar Sahu</p>
+        <p><b>Mobile:</b> <a href="tel:+917773868330">+91 7773868330</a></p>
+        <p><b>Email:</b> <a href="mailto:durgachoicecenter99@gmail.com">thaneshwarsahu010@gmail.com</a></p>
+        <p><b>Address:</b> Durga Choice Center, Armarikala, Chhattisgarh Pin Code (491222)</p>
+      </div>
+      <div class="footer-box">
+        <h3>Important Links</h3>
+        <ul>
+          <li><a href="latestjob.html">Latest Job</a></li>
+          <li><a href="admitcurd.html">Admit Card</a></li>
+          <li><a href="result.html">Result</a></li>
+          <li><a href="syllaus.html">Syllabus</a></li>
+          <li><a href="https://connect.csc.gov.in/account/authorize?response_type=code&client_id=0f8ca686-5a31-46b8-bb51-d9834ba9fa9d&redirect_uri=https%3A%2F%2Fdigitalseva.csc.gov.in%2Fauth%2Fcallback%2F&state=63148">CSC Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <h3>Our Location</h3>
+        <iframe src="https://www.google.com/maps?q=Armarikala,Chhattisgarh&output=embed" width="100%" height="180" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Durga Choice Center Armarikala | Developed by Thaneshwar Sahu</div>
+  </footer>
+</body>
+</html>
