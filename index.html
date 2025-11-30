@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Durga Choice Center Armarikala</title>
+<title>Durga CSC.in</title>
+<link rel="shorcut icon"  href="Durga.png">
 <style>
 body {margin:0; font-family:Arial, sans-serif; background:#f4f4f4;}
 header {background:#c10000; padding:20px; text-align:center; color:white; font-size:50px; font-weight:bold; font-family:'Oswald',sans-serif;}
@@ -110,11 +111,92 @@ ul li a:hover {text-decoration:underline; color:#000;}
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  /* Floating Buttons */
+.floating-social {
+    position: fixed;
+    right: 20px;
+    bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.btn-social {
+    padding: 10px 18px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+/* WhatsApp Button */
+.btn-social.whatsapp {
+    background: #25D366;
+}
+
+/* Instagram Button */
+.btn-social.instagram {
+    background: #E1306C;
+}
+
+.btn-social:hover {
+    transform: scale(1.08);
+}
+.live-now-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: -5px;
+}
+
+.live-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: linear-gradient(90deg, #ff4b4b, #ff0000);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.4);
+    letter-spacing: 1px;
+}
+
+.live-now .dot {
+    width: 10px;
+    height: 10px;
+    background: #ffbdbd;
+    border-radius: 50%;
+    animation: blink 1s infinite ease-in-out;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+.site-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
 </style>
 </head>
 <body>
+  <div class="site-container">
+    <!-- आपका पूरा website content यहाँ आएगा -->
 
-<header>Durga Choice Center Armarikala</header>
+
+
+<header>DURGA CSC.IN</header>
 
 <nav>
   <a href="index.html">Home</a>
@@ -123,7 +205,7 @@ ul li a:hover {text-decoration:underline; color:#000;}
   <a href="result.html">Result</a>
   <a href="admission.html">Admission</a>
   <a href="syllaus.html">Syllabus</a>
-  <a href="#">More</a>
+  <a href="disclaimer.html">Disclaimer</a>
 
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="Search here..." onkeyup="search()">
@@ -134,6 +216,8 @@ ul li a:hover {text-decoration:underline; color:#000;}
     <div class="wa-icon"><img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp"></div>
     <span class="wa-text">Chat Now</span>
   </a>
+  
+
 </nav>
 
 <div id="searchResultBox">
@@ -144,14 +228,20 @@ ul li a:hover {text-decoration:underline; color:#000;}
 <div class="notice">
   <strong style="color:darkblue; font-size:20px;"></strong>
   <marquee behavior="scroll" direction="left" style="font-size:18px; color:darkblue;">
-    "ओम कृष्णाय वासुदेवाय <span style='color:darkorange;'>हरये परमात्मने,</span><span style='color:darkred;'> प्रणतः क्लेशनाशाय</span><span style='color:gold;'> गोविंदाय नमो नमः"।</span>
+    "ओम कृष्णाय वासुदेवाय <span style='color:darkorange;'>हरये परमात्मने,</span><span style='color:darkred;'> प्रणतः क्लेशनाशाय</span><span style='color:gold;'> गोविंदाय नमो नमः"। </span><span style="color:darkblue;">////// आज के डिजिटल युग में हर नागरिक को सरकारी काम (Sarkari Kaam) जैसे आधार कार्ड, पैन कार्ड, नरेगा जॉब कार्ड, राशन कार्ड, और विभिन्न योजनाओं की जानकारी की जरूरत होती है। हम आपके लिए लाए हैं एक ऐसा प्लेटफॉर्म जहाँ ये सभी Sarkari Kam एक क्लिक में उपलब्ध हैं।</span>
   </marquee>
   <p><font color="maroon">Get Online Form, Results, Admit Card, Answer Key, Syllabus, Career News, Sarkari Yojana, Scholarship, Sarkari Notice etc.</font></p>
   
 </div>
+<div class="live-now-container">
+    <div class="live-now">
+      <span class="dot"></span>
+      LIVE NOW
+    </div>
+</div>
 
 <h2 style="text-align:center; color:#003366;">Important Links</h2>
-<p><font size="3px" color="darkblue"><b>आज के डिजिटल युग में हर नागरिक को सरकारी काम (Sarkari Kaam) जैसे आधार कार्ड, पैन कार्ड, नरेगा जॉब कार्ड, राशन कार्ड, और विभिन्न योजनाओं की जानकारी की जरूरत होती है। हम आपके लिए लाए हैं एक ऐसा प्लेटफॉर्म जहाँ ये सभी Sarkari Kam एक क्लिक में उपलब्ध हैं।</b></font></p>
+<p><font size="3px" color="darkblue"><b></b></font></p>
 <div class="pro-note">
   <div class="note-header">
     🏠 घर बैठे सेवा उपलब्ध
@@ -170,37 +260,53 @@ ul li a:hover {text-decoration:underline; color:#000;}
   <!-- Cards inserted via JS for toggle -->
 </div>
 <button class="more-btn" id="moreBtn" onclick="showMore()">More Curd / Sides</button>
-
+<br>
+<br>
 <!-- Boxes -->
 <div class="container">
   <div class="box">
     <h2>Results</h2>
     <ul>
-      <li><a href="https://durg.ucanapply.com/result-details">Hemchand yadav</a></li>
-      <li><a href="http://www.prsuuniv.in/login">Pt. Ravishankar Shukla University, Raipur</a></li>
-      <li><a href="https://cgbse.nic.in/">10th</a></li>
-      <li><a href="https://cgbse.nic.in/">12th</a></li>
+      <marquee direction="up" scrollamount="2"onmouseover="this.stop()" 
+         onmouseout="this.start()" style="height: calc(100% - 30px);">
+      <li><a href="https://durg.ucanapply.com/result-details">🔔Hemchand yadav</a></li>
+      <li><a href="http://www.prsuuniv.in/login">🔔Pt. Ravishankar Shukla University, Raipur</a></li>
+      <li><a href="https://cgbse.nic.in/">🔔10th</a></li>
+      <li><a href="https://cgbse.nic.in/">🔔12th</a></li>
+      <li><a href="https://vyapamcg.cgstate.gov.in/Post?PostID=RESULT">🔔Cg vyapam result</a></li>
       <li><a href="#"></a></li>
+       <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+    </marquee>
     </ul>
   </div>
   <div class="box">
     <h2>Admit Cards</h2>
     <ul>
-      <li><a href="#">"Coming soon" </a></li>
-      <li><a href="#">"Coming soon"</a></li>
-      <li><a href="#">"Coming soon"</a></li>
-      <li><a href="#">"Coming soon"</a></li>
-      <li><a href="#">"Coming soon"</a></li>
+      <marquee direction="up" scrollamount="2"onmouseover="this.stop()" 
+         onmouseout="this.start()" style="height: calc(100% - 30px);">
+      <li><a href="#">"🔔Coming soon" </a></li>
+      <li><a href="#">"🔔Coming soon"</a></li>
+      <li><a href="#">"🔔Coming soon"</a></li>
+      <li><a href="#">"🔔Coming soon"</a></li>
+      <li><a href="#">"🔔Coming soon"</a></li>
+    </marquee>
     </ul>
   </div>
   <div class="box">
-    <h2>Latest Jobs</h2>
+    <h2>Latest Notification</h2>
     <ul>
-      <li><a href="#">"Coming soon"</a></li>
-      <li><a href="#">"Coming soon"</a></li>
-      <li><a href="#">"Coming soon"</a></li>
-      <li><a href="#">"Coming soon"</a></li>
-      <li><a href="#">"Coming soon"</a></li>
+      <marquee direction="up" scrollamount="2"onmouseover="this.stop()" 
+         onmouseout="this.start()" style="height: calc(100% - 30px);">
+      <li><a href="https://voters.eci.gov.in/searchInSIR/S2UA4DPDF-JK4QWODSE">🔔"SIR ( 2003 ,2002 वोटर लिस्ट )"</a></li>
+      <li><a href="https://voters.eci.gov.in/">🔔"SIR फॉर्म ऑनलाइन भरे"</a></li>
+      <li><a href="https://voters.eci.gov.in/">🔔"BLO ने सब्मिट किया की नहीं जाने"</a></li>
+      <li><a href="fromA.html">🔔"ड्राइविंग लाइसेंस और RC में मोबाइल नंबर अपडेट करे(आधार ऑथेंटिकेशन )"</a></li>
+      <li><a href="fromA.html">🔔"गाड़ी मालिक मोबाइल नंबर अपडेट करे"</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.nic.onenationonecard&hl=hi">🔔"आधार नंबर से राशन कार्ड डाऊनलोड करे"</a></li>
+      <li><a href="fromA.html">🔔"चालान चेक करे"</a></li>
+      </marquee>
+
     </ul>
   </div>
   <div class="box">
@@ -211,6 +317,7 @@ ul li a:hover {text-decoration:underline; color:#000;}
       <li><a href="https://www.remove.bg/">BG-Remove</a></li>
       <li><a href="https://sarkariresulttools.net/resume-maker/">Resume & CV Maker</a></li>
       <li><a href="https://sarkaricsc.com/sarkari-tools/">Add Name & Date</a></li>
+      <li><a href="https://scholarships.gov.in/otrapplication/#/">NSP नेशनल स्कालरशिप OTR</a></li>
     </ul>
   </div>
 </div>
@@ -300,18 +407,20 @@ function search(){
 
 function closeSearchBox(){document.getElementById('searchResultBox').style.display='none'; document.getElementById('searchInput').value='';}
 </script>
-
+<!--mey div-->
+</div>
 <footer class="footer">
     <div class="footer-container">
       <div class="footer-box">
         <h3>About Us</h3>
-        <p>Durga Choice Center Armarikala – All Online Forms, Sarkari Yojana, Govt Services, Exam Forms, Result, Admit Card & More.</p>
+        <p>Durga CSC.IN – All Online Forms, Sarkari Yojana, Govt Services, Exam Forms, Result, Admit Card & More.</p>
       </div>
       <div class="footer-box">
         <h3>Contact Us</h3>
         <p><b>Owner:</b> Thaneshwar Sahu</p>
         <p><b>Mobile:</b> <a href="tel:+917773868330">+91 7773868330</a></p>
         <p><b>Email:</b> <a href="mailto:durgachoicecenter99@gmail.com">thaneshwarsahu010@gmail.com</a></p>
+        
         <p><b>Address:</b> Durga Choice Center, Armarikala,Dist-Balod, Chhattisgarh Pin Code (491222)</p>
       </div>
       <div class="footer-box">
@@ -329,7 +438,13 @@ function closeSearchBox(){document.getElementById('searchResultBox').style.displ
         <iframe src="https://www.google.com/maps?q=Armarikala,Chhattisgarh&output=embed" width="100%" height="180" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
-    <div class="footer-bottom">© 2025 Durga Choice Center Armarikala | Developed by Thaneshwar Sahu</div>
+    <div class="footer-bottom">© 2025 Durga CSC.IN | Developed by Thaneshwar Sahu</div>
   </footer>
+  <!-- Floating Social Buttons -->
+<div class="floating-social">
+  <a href="https://whatsapp.com/channel/0029VaB2q8hH5JLrbc43ft42" target="_blank" class="btn-social whatsapp">WhatsApp Channel</a>
+  <a href="https://instagram.com/durga_csc.in" target="_blank" class="btn-social instagram">Instagram</a>
+</div>
+
 </body>
 </html>
