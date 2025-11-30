@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notification Scroll</title>
+<link rel="shorcut icon"  href="Durga.png">
+<style>
+  .notification-box {
+    width: 300px; /* apne width ke hisab se */
+    height: 350px; /* height jitni chahiye */
+    border: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .notification-header {
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+  }
+
+  .notification-content-wrapper {
+    position: absolute;
+    top: 100%; /* start from bottom */
+    width: 100%;
+    animation: scrollUp 10s linear infinite;
+  }
+
+  .notification-content-wrapper:hover {
+    animation-play-state: paused; /* pause on hover */
+  }
+
+  .notification-content {
+    padding: 5px;
+    list-style-type: none;
+    margin: 0px;
+  }
+
+  .notification-content li {
+    margin-bottom: 15px;
+  }
+
+  @keyframes scrollUp {
+    0% {
+      top: 100%;
+    }
+    100% {
+      top: -100%;
+    }
+  }
+
+  /* Mobile-friendly */
+  @media (max-width: 500px) {
+    .notification-box {
+      width: 90%;
+      height: 120px;
+    }
+    .notification-content li {
+      font-size: 14px;
+    }
+  }
+  .site-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+</style>
+</head>
+<body>
+  <div class="site-container">
+    <!-- आपका पूरा website content यहाँ आएगा -->
+
+<div class="notification-box">
+  <div class="notification-header">Latest Notification</div>
+  <div class="notification-content-wrapper">
+    <ul class="notification-content">
+      <li>SIR (2003, 2002 वोटर लिस्ट)</li>
+      <li>SIR फॉर्म ऑनलाइन भरे</li>
+      <li>BLO ने सर्टिफ किया की नहीं जाने</li>
+      <li>ड्राइविंग लाइसेंस और RC में मोबाइल नंबर अपडेट करे (आधार ऑथेंटिकेशन)</li>
+      <li>गाड़ी मालिक मोबाइल नंबर अपडेट करे</li>
+      <li>आधार नंबर से राशन कार्ड डाउनलोड करे</li>
+      <li>चालान चेक करे</li>
+    </ul>
+  </div>
+</div>
+<!--main div..............-->
+</div>
+</body>
+</html>
