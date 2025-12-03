@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Box with Support</title>
+
+<!-- Styling -->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Payment Box */
+.payment-box {
+    max-width: 500px;
+    margin: 25px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+    border-left: 6px solid #ff8800;
+}
+
+/* Heading */
+.payment-box h2 {
+    text-align: center;
+    color: #d35400;
+    margin-top: 0;
+}
+
+/* Paragraphs */
+.payment-box p {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* Dropdown */
+.dropdown {
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    padding: 12px 18px;
+    background: #ff6600;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.dropbtn:hover {
+    background: #ff4500;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    z-index: 999;
+    top: 50px;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px;
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+    transition: 0.2s;
+}
+
+.dropdown-content a:hover {
+    background: #f2f2f2;
+}
+
+/* Amount input */
+#amt {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 2px solid #ff8800;
+    font-size: 18px;
+    border-radius: 10px;
+    display: none;
+}
+
+/* Pay Button */
+.pay-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 15px;
+    background: linear-gradient(90deg,#ff6600,#ff3300);
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255,100,0,0.4);
+    transition: 0.3s;
+}
+
+.pay-btn:hover {
+    opacity: 0.9;
+}
+
+/* Support Box */
+.support-box {
+    margin-top: 25px;
+    padding: 15px;
+    border: 2px dashed #ff8800;
+    border-radius: 12px;
+    background: #fff8f0;
+    text-align: center;
+}
+
+.support-box p {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: #d35400;
+}
+
+/* WhatsApp Button */
+.support-box a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #25D366;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.support-box a:hover {
+    background: #1ebe5d;
+}
+
+/* Responsive */
+@media screen and (max-width: 550px) {
+    .payment-box {
+        margin: 15px;
+        padding: 15px;
+    }
+    .dropbtn, .support-box a, .pay-btn {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+    #amt {
+        font-size: 16px;
+    }
+}
+.footer {background:#001f3f; color:white; margin-top:40px; padding:40px 0 10px 0;}
+.footer-container {width:90%; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;}
+.footer-box h3 {font-size:20px; margin-bottom:10px; border-left:5px solid #ffcc00; padding-left:10px;}
+.footer-box p, .footer-box a{font-size:15px; color:#e6e6e6; text-decoration:none;}
+.footer-box a:hover{color:#ffcc00;}
+.footer-bottom{text-align:center; background:#000d1a; padding:12px; margin-top:25px; font-size:14px; color:#cccccc;}
+</style>
+</head>
+<body>
+
+<!-- Payment Box -->
+<div class="payment-box">
+
+    <h2>💳 Book & Pay</h2>
+
+    <p>नीचे अपनी <b>Fee</b> select करें और Payment करें।  
+       Payment के बाद आपको WhatsApp पर Receipt भेजी जाएगी।</p>
+
+    <!-- Dropdown Fee Options -->
+    <div class="dropdown">
+        <div class="dropbtn">Select Fee</div>
+        <div class="dropdown-content">
+            <a href="#" onclick="selectFee('Syllabus Fee', 500)">📘 Syllabus Fee - ₹500</a>
+            <a href="#" onclick="selectFee('Paper Fee', 300)">📝 Paper Fee - ₹300</a>
+            <a href="#" onclick="selectFee('PPT Fee', 200)">📄 PPT Fee - ₹200</a>
+            <a href="#" onclick="selectFee('Custom Amount', 0)">💵 Custom Amount</a>
+        </div>
+    </div>
+
+    <!-- Amount Input -->
+    <input id="amt" type="number" placeholder="Enter Amount">
+
+    <!-- Pay Button -->
+    <button class="pay-btn" onclick="payNow()">🚀 Pay Now</button>
+
+    <p>📄 Payment ke turant baad <b>Digital Fee Receipt</b> WhatsApp par mil जाएगी।</p>
+
+    <!-- Support / WhatsApp Box -->
+    <div class="support-box">
+        <p>⚠️ Fee se related koi bhi problem aaye, to hume WhatsApp par message karein.</p>
+        <a href="https://wa.me/917773868330?text=Hello,%20I%20need%20help%20regarding%20fee%20payment." target="_blank">
+            💬 WhatsApp Chat
+        </a>
+    </div>
+</div>
+
+<!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+// Dropdown functionality
+const dropdown = document.querySelector('.dropdown');
+const dropbtn = dropdown.querySelector('.dropbtn');
+const dropdownContent = dropdown.querySelector('.dropdown-content');
+const amtInput = document.getElementById('amt');
+
+dropbtn.addEventListener('click', () => {
+    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+});
+
+function selectFee(feeName, feeAmount){
+    dropbtn.innerText = feeName + (feeAmount > 0 ? ` - ₹${feeAmount}` : '');
+    dropdownContent.style.display = 'none';
+
+    if(feeName === 'Custom Amount'){
+        amtInput.style.display = 'block';
+        amtInput.value = '';
+    } else {
+        amtInput.style.display = 'none';
+        amtInput.value = feeAmount;
+    }
+}
+
+// Razorpay Payment
+function payNow(){
+    let amount = amtInput.value;
+    if(!amount || amount < 1){
+        alert("❗Please enter a valid amount!");
+        return;
+    }
+
+    var options = {
+        "key": "rzp_test_RmiOfhy0po0fki",  // Replace with your Razorpay key
+        "amount": amount * 100,
+        "currency": "INR",
+        "name": "Durga Choice Center Armarikala",
+        "description": "Fee Payment",
+        "handler": function (response){
+            var txid = response.razorpay_payment_id;
+            var whatsapp = "917773868330"; // Replace with your WhatsApp number
+            var msg = `Hello Sir,%0A%0AI have completed the payment of ₹${amount}.%0A%0A*Transaction ID:* ${txid}%0APlease provide my receipt.%0AThank You 🙏`;
+            window.location.href = `https://wa.me/${whatsapp}?text=${msg}`;
+        },
+        "theme": {"color": "#ff6600"}
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.open();
+}
+
+// Hide dropdown if click outside
+window.onclick = function(event){
+    if(!dropdown.contains(event.target)){
+        dropdownContent.style.display = 'none';
+    }
+}
+</script>
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-box">
+        <h3>About Us</h3>
+        <p>Durga CSC.IN – All Online Forms, Sarkari Yojana, Govt Services, Exam Forms, Result, Admit Card & More.</p>
+      </div>
+      <div class="footer-box">
+        <h3>Contact Us</h3>
+        <p><b>Owner:</b> Thaneshwar Sahu</p>
+        <p><b>Mobile:</b> <a href="tel:+917773868330">+91 7773868330</a></p>
+        <p><b>Email:</b> <a href="mailto:durgachoicecenter99@gmail.com">thaneshwarsahu010@gmail.com</a></p>
+        
+        <p><b>Address:</b> Durga Choice Center, Armarikala,Dist-Balod, Chhattisgarh Pin Code (491222)</p>
+      </div>
+      <div class="footer-box">
+        <h3>Important Links</h3>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+          <li><a href="latestjob.html">Latest Job</a></li>
+          <li><a href="admitcurd.html">Admit Card</a></li>
+          <li><a href="result.html">Result</a></li>
+          <li><a href="syllaus.html">Syllabus</a></li>
+          <li><a href="https://connect.csc.gov.in/account/authorize?response_type=code&client_id=0f8ca686-5a31-46b8-bb51-d9834ba9fa9d&redirect_uri=https%3A%2F%2Fdigitalseva.csc.gov.in%2Fauth%2Fcallback%2F&state=63148">CSC Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <h3>Our Location</h3>
+        <iframe src="https://www.google.com/maps?q=Armarikala,Chhattisgarh&output=embed" width="100%" height="180" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Durga CSC.IN | Developed by Thaneshwar Sahu</div>
+  </footer>
+  <!-- Floating Social Buttons -->
+<div class="floating-social">
+  <a href="https://whatsapp.com/channel/0029VaB2q8hH5JLrbc43ft42" target="_blank" class="btn-social whatsapp">WhatsApp Channel</a>
+  <a href="https://instagram.com/durga_csc.in" target="_blank" class="btn-social instagram">Instagram</a>
+</div>
+
+</body>
+</html>
