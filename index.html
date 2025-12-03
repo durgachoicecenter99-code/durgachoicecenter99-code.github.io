@@ -188,6 +188,124 @@ ul li a:hover {text-decoration:underline; color:#000;}
     padding: 0 15px;
 }
 
+/* Dropdown Style */
+.dropdown {
+    position: relative;
+    display: inline-block; /* ensure it aligns with other nav items */
+}
+
+.dropbtn {
+    background: #ffffff; /* button color */
+    color: #c10000;      /* text color */
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 999;
+    top: 45px; /* adjust if nav height is different */
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px;
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-content a:hover {
+    background: #f2f2f2;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+ .dropdown:hover .dropdown-content {
+    display: block;
+    transition: all 0.2s ease; /* thoda smooth */
+}
+
+/* Extra: dropdown thoda upar se gap nahi rakhe */
+.dropdown-content {
+    top: 100%; /* button ke neeche perfectly align */
+}
+
+/* Popup Background */
+#popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Popup Box */
+#popupBox {
+  width: 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  animation: pop 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#popupBox h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #075e54;
+}
+
+#popupBox p {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+/* Join Button */
+.joinBtn {
+  display: inline-block;
+  background: #25d366;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+/* Close Button */
+.closeBtn {
+  margin-top: 15px;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  color: red;
+}
+  /* Stylish Glow */
+  #popupBox {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  }
 </style>
 </head>
 <body>
@@ -205,17 +323,26 @@ ul li a:hover {text-decoration:underline; color:#000;}
   <a href="result.html">Result</a>
   <a href="admission.html">Admission</a>
   <a href="syllaus.html">Syllabus</a>
-  <a href="disclaimer.html">Disclaimer</a>
+  <a href="ppt.html">PPT</a>
+   <a href="disclaimer.html">Disclaimer</a>
+   <!-- PAY BUTTON DROPDOWN -->
+<div class="dropdown">
+    <div class="dropbtn">Pay</div>
+    <div class="dropdown-content">
+        <a href="pay.html" target="_blank">Syllabus Fee</a>
+        <a href="pay.html" target="_blank">Paper Fee</a>
+        <a href="pay.html" target="_blank">PPT Fee</a>
+        <a href="pay.html" target="_blank">Other Fee</a>
+    </div>
+</div>
+
 
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="Search here..." onkeyup="search()">
     <button onclick="search()">Search</button>
   </div>
 
-  <a href="https://wa.me/+917773868330" target="_blank" class="wa-float">
-    <div class="wa-icon"><img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp"></div>
-    <span class="wa-text">Chat Now</span>
-  </a>
+  
   
 
 </nav>
@@ -256,6 +383,15 @@ ul li a:hover {text-decoration:underline; color:#000;}
     <a href="tel:917773868330" class="btn call">Call Now</a>
   </div>
 </div>
+<!-- Popup HTML -->
+<div id="popupOverlay">
+  <div id="popupBox">
+    <h2>Join WhatsApp Group</h2>
+    <p>Click below to join our official WhatsApp Group</p>
+    <a class="joinBtn" onclick="joinClicked()" href="https://wa.me/yourgroup" target="_blank">JOIN GROUP</a>
+    <div class="closeBtn" onclick="closePopup()">Close</div>
+  </div>
+</div>
 <div class="btn-box" id="cardContainer">
   <!-- Cards inserted via JS for toggle -->
 </div>
@@ -286,8 +422,8 @@ ul li a:hover {text-decoration:underline; color:#000;}
       <marquee direction="up" scrollamount="2"onmouseover="this.stop()" 
          onmouseout="this.start()" style="height: calc(100% - 30px);">
       <li><a href="https://vyapamprofile.cgstate.gov.in/Online/UserLogin.aspx">"🔔Amin patwari admit card" </a></li>
-      <li><a href="#">"🔔Coming soon"</a></li>
-      <li><a href="#">"🔔Coming soon"</a></li>
+      <li><a href="https://rrb.digialm.com/EForms/configuredHtml/33015/96410/login.html">"🔔Card 2025  RRB Group D Admit Card 2025"</a></li>
+      <li><a href="https://ssc.gov.in">"🔔 Delhi Police Head Constable (Ministerial) Admit Card 2025"</a></li>
       <li><a href="#">"🔔Coming soon"</a></li>
       <li><a href="#">"🔔Coming soon"</a></li>
     </marquee>
@@ -406,6 +542,48 @@ function search(){
 }
 
 function closeSearchBox(){document.getElementById('searchResultBox').style.display='none'; document.getElementById('searchInput').value='';}
+
+
+const dropdown = document.querySelector('.dropdown');
+const dropdownContent = document.querySelector('.dropdown-content');
+
+dropdown.addEventListener('mouseenter', () => {
+    dropdownContent.style.display = 'block';
+});
+
+dropdown.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+        dropdownContent.style.display = 'none';
+    }, 200); // 200ms delay
+});
+
+
+// Check if popup was already shown & joined
+let joined = localStorage.getItem('joinedGroup');
+
+window.onload = function () {
+  if (!joined) {
+    setTimeout(showPopup, 3000);
+    setInterval(showPopup, 30000);
+  }
+};
+
+function showPopup() {
+  // Mobile only condition
+  if (window.innerWidth <= 600) {
+    document.getElementById('popupOverlay').style.display = 'flex';
+    document.getElementById('popupBox').style.animation = 'slideIn 0.4s ease-out';
+  }
+}
+
+function closePopup() {
+  document.getElementById('popupOverlay').style.display = 'none';
+}
+
+// When user clicks JOIN GROUP
+function joinClicked() {
+  localStorage.setItem('joinedGroup', 'yes');
+}
 </script>
 <!--mey div-->
 </div>
