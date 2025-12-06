@@ -1,349 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
   <title>Durga CSC - Govt & Private Jobs, Daily Updates</title>
   <meta name="description" content="Durga CSC - Govt & Private jobs, education updates, tools, and daily alerts.">
   <meta name="keywords" content="CSC, Govt job, Private job, Education updates, Daily alerts, Durga CSC">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://durgacsc.in/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="EYQPLbjBrC-nvXlaUGvd29wpZO5tVli-uyWIzZVeVkU" />
-  <link rel="shortcut icon" href="durga.png">
 
-  <style>
-    /* Basic layout */
-    body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; color:#222; }
-    .site-container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
+<link rel="shorcut icon"  href="durga.png">
+<style>
+body {margin:0; font-family:Arial, sans-serif; background:#f4f4f4;}
+header {background:#c10000; padding:20px; text-align:center; color:white; font-size:50px; font-weight:bold; font-family:'Oswald',sans-serif;}
+nav {
+    background: #003366;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px; /* gap कम किया */
+}
 
-    header { background:#c10000; padding:20px; text-align:center; color:white; font-size:50px; font-weight:bold; font-family:'Oswald',sans-serif; }
-    nav { background:#003366; padding:10px; display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
-    nav a { color:white; text-decoration:none; margin:5px 10px; font-size:16px; font-weight:bold; padding:6px 10px; border-radius:4px; transition:0.3s ease; }
-    nav a:hover { color:#ffdd57; background: rgba(255,255,255,0.12); }
+/* Normal nav links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 10px;   /* margin कम किया */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 6px 10px;  /* fixed padding so no movement */
+    border-radius: 4px;
+    transition: 0.3s ease;
+}
 
-    .search-box { width:350px; display:flex; align-items:center; gap:5px; margin-top:10px; }
-    .search-box input { width:100%; padding:10px; border:2px solid #555; border-radius:10px; font-size:14px; }
-    .search-box button { padding:10px 20px; border:none; background:#007bff; color:white; font-size:14px; border-radius:10px; cursor:pointer; }
+/* Hover effect (NO gap increase) */
+nav a:hover {
+    color: #ffdd57;
+    background: rgba(255,255,255,0.15);
+    /* padding SAME rakhi → gap nahi badhega */
+    padding: 6px 10px;
+}
 
-    .notice { padding:20px; text-align:center; font-size:18px; }
+.notice {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
 
-    .btn-box { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; padding:20px; }
-    .btn-box a { text-decoration:none; color:inherit; }
-    .card { background:#fff; padding:20px; text-align:center; font-size:20px; border-radius:10px; cursor:pointer; box-shadow:0 6px 12px rgba(0,0,0,0.12); transition: transform 0.2s ease, box-shadow 0.2s ease; color: #fff; }
-    .card a{ color:inherit; display:block; text-decoration:none; }
-    .card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.18); }
+.notice {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+.btn-box {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; padding:20px;}
+.btn-box a{text-decoration:none; color:inherit;}
+.card {background:#fff; padding:20px; text-align:center; font-size:20px; border-radius:10px; cursor:pointer; box-shadow:0 6px 12px rgba(0,0,0,0.25); transition: transform 0.2s ease, box-shadow 0.2s ease;}
+.card:hover {transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.35);}
+.red{background:#ff4d4d;} .yellow{background:#ffcc00;} .blue{background:#3399ff;} .green{background:#33cc33;}
+.chocolate{background:#D2691E;} .brown{background:#A52A2A;} .coral{background:#FF7F50;} .darkblue{background:#00008B;}
+.darkorange{background:#FF8C00;} .gold{background:#FFD700;} .cyan{background:#00FFFF;} .purple{background:#800080;}
+.fuchsia{background:#FF00FF;} .maroon{background:#800000;}
+.container {width:95%; margin:auto; display:flex; gap:20px; padding:30px 0; flex-wrap:wrap;}
+.box {flex:1; background:#fff; border:1px solid #ccc; border-radius:5px; min-width:250px;}
+.box h2 {text-align:center; margin:0; padding:12px; background:#b50707; color:white; font-size:22px;}
+ul {list-style-type:square; padding:20px; margin:0;}
+ul li {margin-bottom:10px;}
+ul li a {text-decoration:none; color:#0033cc; font-size:15px;}
+ul li a:hover {text-decoration:underline; color:#000;}
+@media(max-width:900px){.container{flex-direction:column;} .search-box{width:100%;}}
+.search-box{width:350px; display:flex; align-items:center; gap:5px; margin-top:10px;}
+.search-box input{width:100%; padding:10px; border:2px solid #555; border-radius:10px; font-size:14px;}
+.search-box button{padding:10px 20px; border:none; background:#007bff; color:white; font-size:14px; border-radius:10px; cursor:pointer;}
+.wa-float{position:fixed; bottom:20px; right:20px; display:flex; align-items:center; text-decoration:none; z-index:999999;}
+.wa-icon img{width:55px; height:55px; border-radius:50%; box-shadow:0 0 15px rgba(37,211,102,0.8); animation:glow 1.5s infinite alternate;}
+@keyframes glow{from{box-shadow:0 0 10px rgba(37,211,102,0.7);} to{box-shadow:0 0 20px rgba(37,211,102,1);}}
+.wa-text{margin-left:10px; background:#25D366; color:white; padding:10px 15px; border-radius:30px; font-size:16px; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3); opacity:0; transform:translateX(20px); transition: all 0.5s ease;}
+.wa-float:hover .wa-text{opacity:1; transform:translateX(0); background:#1ebe5b; cursor:pointer;}
+#searchResultBox{position:absolute; top:60px; right:20px; width:300px; max-height:400px; overflow-y:auto; background:white; border:2px solid #007bff; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.3); display:none; z-index:9999; padding:10px;}
+#searchResultBox a{display:block; margin:5px 0; color:#0033cc; font-weight:bold; text-decoration:none;}
+#searchResultBox a:hover{color:#ff4d4d; text-decoration:underline;}
+#searchResultBox .closeBox{display:block; text-align:right; font-weight:bold; color:red; cursor:pointer; margin-bottom:5px;}
 
-    /* color classes */
-    .red{ background:#ff4d4d; } .yellow{ background:#ffcc00; color:#111; } .blue{ background:#3399ff; } .green{ background:#33cc33; }
-    .chocolate{ background:#D2691E; } .brown{ background:#A52A2A; } .coral{ background:#FF7F50; } .darkblue{ background:#00008B; }
-    .darkorange{ background:#FF8C00; } .gold{ background:#FFD700; color:#111; } .cyan{ background:#00FFFF; color:#111; } .purple{ background:#800080; }
-    .fuchsia{ background:#FF00FF; } .maroon{ background:#800000; }
+/* Responsive for mobile */
+@media(max-width: 500px) {
+  #result {width: 95%; font-size: 16px; padding: 15px;}
+  .search-box {width: 95%; flex-direction: column; gap: 10px;}
+  .search-box button {width: 100%;}
+}
 
-    .container { width:95%; margin:auto; display:flex; gap:20px; padding:30px 0; flex-wrap:wrap; }
-    .box { flex:1; background:#fff; border:1px solid #ccc; border-radius:5px; min-width:250px; }
-    .box h2 { text-align:center; margin:0; padding:12px; background:#b50707; color:white; font-size:22px; border-radius:5px 5px 0 0; }
-    .box ul { list-style-type:square; padding:20px; margin:0; max-height:240px; overflow:hidden; }
-    .box li { margin-bottom:10px; }
-    .box li a { text-decoration:none; color:#0033cc; font-size:15px; }
-    .box li a:hover { text-decoration:underline; color:#000; }
+.footer {background:#001f3f; color:white; margin-top:40px; padding:40px 0 10px 0;}
+.footer-container {width:90%; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;}
+.footer-box h3 {font-size:20px; margin-bottom:10px; border-left:5px solid #ffcc00; padding-left:10px;}
+.footer-box p, .footer-box a{font-size:15px; color:#e6e6e6; text-decoration:none;}
+.footer-box a:hover{color:#ffcc00;}
+.footer-bottom{text-align:center; background:#000d1a; padding:12px; margin-top:25px; font-size:14px; color:#cccccc;}
 
-    .live-now-container { width:100%; display:flex; justify-content:center; margin-top:15px; margin-bottom:-5px; }
-    .live-now { display:inline-flex; align-items:center; gap:8px; padding:8px 18px; background: linear-gradient(90deg,#ff4b4b,#ff0000); color:white; font-weight:700; font-size:14px; border-radius:30px; box-shadow:0px 4px 10px rgba(255,0,0,0.25); letter-spacing:1px; }
-    .live-now .dot { width:10px; height:10px; background:#ffbdbd; border-radius:50%; animation:blink 1s infinite ease-in-out; }
-    @keyframes blink { 0% { opacity:0.2 } 50% { opacity:1 } 100% { opacity:0.2 } }
+.more-btn {display:block; text-align:center; margin:10px auto; padding:12px 25px; background:#007bff; color:white; font-size:16px; border:none; border-radius:10px; cursor:pointer;}
+.more-btn:hover {background:#0056b3;}
 
-    .footer { background:#001f3f; color:white; margin-top:40px; padding:40px 0 10px 0; }
-    .footer-container { width:90%; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; }
-    .footer-box h3 { font-size:20px; margin-bottom:10px; border-left:5px solid #ffcc00; padding-left:10px; }
-    .footer-box p, .footer-box a { font-size:15px; color:#e6e6e6; text-decoration:none; }
-    .footer-box a:hover { color:#ffcc00; }
-    .footer-bottom { text-align:center; background:#000d1a; padding:12px; margin-top:25px; font-size:14px; color:#cccccc; }
+ .pro-note { background: #fff8d1; border-left: 6px solid #f5b400;
+  padding: 20px;border-radius: 12px;
+    margin: 20px; font-family: Arial, sans-serif; animation: fadeIn 0.8s ease-in-out; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
 
-    .more-btn { display:block; text-align:center; margin:10px auto; padding:12px 25px; background:#007bff; color:white; font-size:16px; border:none; border-radius:10px; cursor:pointer; }
-    .more-btn:hover { background:#0056b3; }
+  .note-header { font-size: 22px; font-weight: bold; margin-bottom: 8px;
+  }
 
-    /* popup */
-    #popupOverlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; z-index:9999; }
-    #popupBox { width:320px; background:white; padding:20px; border-radius:15px; text-align:center; animation:pop 0.28s ease-out; box-shadow:0 0 20px rgba(0,255,0,0.08); }
-    @keyframes pop { from { transform: translateY(20px); opacity:0 } to { transform: translateY(0); opacity:1 } }
-    .joinBtn { display:inline-block; background:#25d366; padding:10px 20px; color:white; font-size:16px; border-radius:10px; text-decoration:none; margin-top:10px; }
-    .closeBtn { margin-top:15px; font-size:14px; cursor:pointer; color:red; }
+  .note-body { font-size: 18px; line-height: 26px;
+  }
 
-    /* Floating WhatsApp */
-    .wa-float { position: fixed; bottom:20px; right:20px; display:flex; align-items:center; text-decoration:none; z-index:9999; }
-    .wa-icon img { width:55px; height:55px; border-radius:50%; box-shadow:0 0 15px rgba(37,211,102,0.8); animation:glow 1.5s infinite alternate; }
-    @keyframes glow { from { box-shadow:0 0 10px rgba(37,211,102,0.7) } to { box-shadow:0 0 20px rgba(37,211,102,1) } }
-    .wa-text { margin-left:10px; background:#25D366; color:white; padding:10px 15px; border-radius:30px; font-size:16px; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3); opacity:0; transform:translateX(10px); transition:opacity .25s, transform .25s; }
-    .wa-float:hover .wa-text { opacity:1; transform:translateX(0); background:#1ebe5b; cursor:pointer; }
+  .note-buttons { margin-top: 15px;
+  }
 
-    /* search results box */
-    #searchResultBox { position: absolute; top:60px; right:20px; width:300px; max-height:400px; overflow-y:auto; background:white; border:2px solid #007bff; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.12); padding:10px; display:none; z-index:9999; }
-    #searchResultBox a { display:block; margin:5px 0; color:#0033cc; font-weight:bold; text-decoration:none; }
-    #searchResultBox a:hover { color:#ff4d4d; text-decoration:underline; }
-    #searchResultBox .closeBox { display:block; text-align:right; font-weight:bold; color:red; cursor:pointer; margin-bottom:5px; }
+  .btn { text-decoration: none; padding: 10px 18px; border-radius: 8px; font-size: 16px; font-weight: bold; margin-right: 10px; display: inline-block;
+  }
 
-    /* Floating social */
-    .floating-social { position: fixed; right:20px; bottom:120px; display:flex; flex-direction:column; gap:12px; z-index:9999; }
-    .btn-social { padding:10px 18px; border-radius:30px; color:white; font-weight:bold; text-decoration:none; box-shadow:0 4px 8px rgba(0,0,0,0.3); transition:0.3s; font-size:14px; }
-    .btn-social.whatsapp { background:#25D366; } .btn-social.instagram { background:#E1306C; }
-    .btn-social:hover { transform:scale(1.08); }
+  .whatsapp {
+    background: #25D366;
+    color: white;
+  }
 
-    /* responsive */
-    @media(max-width:900px){ .container{ flex-direction:column } .search-box{ width:100% } }
-    @media(max-width:500px){
-      #searchResultBox{ right:10px; left:10px; width:auto; }
-      .search-box { width:95%; flex-direction:column; gap:10px; }
-      .search-box button { width:100% }
-    }
-  </style>
+  .call {
+    background: #007bff;
+    color: white;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  /* Floating Buttons */
+.floating-social {
+    position: fixed;
+    right: 20px;
+    bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.btn-social {
+    padding: 10px 18px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+/* WhatsApp Button */
+.btn-social.whatsapp {
+    background: #25D366;
+}
+
+/* Instagram Button */
+.btn-social.instagram {
+    background: #E1306C;
+}
+
+.btn-social:hover {
+    transform: scale(1.08);
+}
+.live-now-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: -5px;
+}
+
+.live-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: linear-gradient(90deg, #ff4b4b, #ff0000);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.4);
+    letter-spacing: 1px;
+}
+
+.live-now .dot {
+    width: 10px;
+    height: 10px;
+    background: #ffbdbd;
+    border-radius: 50%;
+    animation: blink 1s infinite ease-in-out;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+.site-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Dropdown Style */
+.dropdown {
+    position: relative;
+    display: inline-block; /* ensure it aligns with other nav items */
+}
+
+.dropbtn {
+    background: #ffffff; /* button color */
+    color: #c10000;      /* text color */
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 999;
+    top: 45px; /* adjust if nav height is different */
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px;
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-content a:hover {
+    background: #f2f2f2;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+ .dropdown:hover .dropdown-content {
+    display: block;
+    transition: all 0.2s ease; /* thoda smooth */
+}
+
+/* Extra: dropdown thoda upar se gap nahi rakhe */
+.dropdown-content {
+    top: 100%; /* button ke neeche perfectly align */
+}
+
+/* Popup Background */
+#popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Popup Box */
+#popupBox {
+  width: 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  animation: pop 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#popupBox h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #075e54;
+}
+
+#popupBox p {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+/* Join Button */
+.joinBtn {
+  display: inline-block;
+  background: #25d366;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+/* Close Button */
+.closeBtn {
+  margin-top: 15px;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  color: red;
+}
+  /* Stylish Glow */
+  #popupBox {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  }
+</style>
 </head>
 <body>
   <div class="site-container">
-    <header>DURGA CSC.IN</header>
+    <!-- आपका पूरा website content यहाँ आएगा -->
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="latestjob.html">Latest Job</a>
-      <a href="admitcurd.html">Admit Card</a>
-      <a href="result.html">Result</a>
-      <a href="admission.html">Admission</a>
-      <a href="syllaus.html">Syllabus</a>
-      <a href="ppt.html">PPT</a>
-      <a href="disclaimer.html">Disclaimer</a>
-      <a href="PrivacyPolicy.html">Privacy Policy</a>
-      <a href="pvc.html">PVC-Curd print</a>
 
-      <div class="search-box" style="margin-left:auto;">
-        <input type="text" id="searchInput" placeholder="Search here..." onkeyup="performSearch()">
-        <button type="button" onclick="performSearch()">Search</button>
-      </div>
-    </nav>
 
-    <div id="searchResultBox">
-      <span class="closeBox" onclick="closeSearchBox()">X</span>
-      <div id="searchResults"></div>
-    </div>
+<header>DURGA CSC.IN</header>
 
-    <div class="notice">
-      <marquee behavior="scroll" direction="left" style="font-size:18px; color:darkblue;">
-        ओम कृष्णाय वासुदेवाय हरये परमात्मने, प्रणतः क्लेशहराय— Get Online Form, Results, Admit Card, Answer Key, Syllabus, Career News.
-      </marquee>
-    </div>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="latestjob.html">Latest Job</a>
+  <a href="admitcurd.html">Admit Card</a>
+  <a href="result.html">Result</a>
+  <a href="admission.html">Admission</a>
+  <a href="syllaus.html">Syllabus</a>
+  <a href="ppt.html">PPT</a>
+   <a href="disclaimer.html">Disclaimer</a>
+   <a href="PrivacyPolicy.html">Privacy Policy</a>
+    <a href="pvc.html">PVC-Curd print</a>
+   <!-- PAY BUTTON DROPDOWN -->
 
-    <div class="live-now-container">
-      <div class="live-now"><span class="dot"></span> LIVE NOW </div>
-    </div>
 
-    <h2 style="text-align:center; color:#003366;">Important Links</h2>
 
-    <div class="pro-note">
-      <div style="font-size:22px; font-weight:bold; margin-bottom:8px;">🏠 घर बैठे सेवा उपलब्ध</div>
-      <div style="font-size:18px; line-height:26px;">💁🏻‍♂️ सभी प्रकार के ऑनलाइन फॉर्म हेतु हमें WhatsApp मैसेज या कॉल करें</div>
-      <div style="margin-top:15px;">
-        <a href="https://wa.me/917773868330" class="joinBtn" style="background:#25D366; margin-right:10px;" target="_blank">WhatsApp</a>
-        <a href="tel:917773868330" class="joinBtn" style="background:#007bff;">Call Now</a>
-      </div>
-    </div>
 
-    <!-- Popup -->
-    <div id="popupOverlay">
-      <div id="popupBox">
-        <h2>Join WhatsApp Group</h2>
-        <p>Click below to join our official WhatsApp Group</p>
-        <a class="joinBtn" onclick="joinClicked()" href="https://chat.whatsapp.com/GIHDSc3kSL5GsvJDuYBu28" target="_blank">JOIN GROUP</a>
-        <div class="closeBtn" onclick="closePopup()">Close</div>
-      </div>
-    </div>
-
-    <div class="btn-box" id="cardContainer"></div>
-    <button class="more-btn" id="moreBtn" onclick="showMore()">More Curd / Sides</button>
-
-    <div class="container">
-      <div class="box">
-        <h2>Results</h2>
-        <ul>
-          <li><a href="https://durg.ucanapply.com/result-details" target="_blank">🔔 Hemchand Yadav</a></li>
-          <li><a href="http://www.prsuuniv.in/login" target="_blank">🔔 Pt. Ravishankar Shukla University, Raipur</a></li>
-          <li><a href="https://cgbse.nic.in/" target="_blank">🔔 10th / 12th (CGBSE)</a></li>
-          <li><a href="https://vyapamcg.cgstate.gov.in/Post?PostID=RESULT" target="_blank">🔔 CG Vyapam result</a></li>
-        </ul>
-      </div>
-
-      <div class="box">
-        <h2>Admit Cards</h2>
-        <ul>
-          <li><a href="https://vyapamprofile.cgstate.gov.in/Online/UserLogin.aspx" target="_blank">📢 Amin / Patwari Admit Card</a></li>
-          <li><a href="https://rrb.digialm.com" target="_blank">📢 RRB Admit Card</a></li>
-          <li><a href="https://ssc.gov.in" target="_blank">📢 SSC Admit Card</a></li>
-        </ul>
-      </div>
-
-      <div class="box">
-        <h2>Latest Notification</h2>
-        <ul>
-          <li><a href="https://voters.eci.gov.in/" target="_blank">🔔 Voter / SIR Forms</a></li>
-          <li><a href="fromA.html">🔔 Driving licence / RC mobile update</a></li>
-          <li><a href="https://play.google.com/store/apps/details?id=com.nic.onenationonecard" target="_blank">🔔 One Nation One Card (Aadhaar)</a></li>
-        </ul>
-      </div>
-
-      <div class="box">
-        <h2>Tools</h2>
-        <ul>
-          <li><a href="https://pdf.pi7.org/resize-pdf" target="_blank">PDF-Resize</a></li>
-          <li><a href="https://www.remove.bg/" target="_blank">BG-Remove</a></li>
-          <li><a href="https://sarkariresulttools.net/resume-maker/" target="_blank">Resume & CV Maker</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-box">
-          <h3>About Us</h3>
-          <p>Durga CSC.IN – All Online Forms, Sarkari Yojana, Govt Services, Exam Forms, Result, Admit Card & More.</p>
-        </div>
-        <div class="footer-box">
-          <h3>Contact Us</h3>
-          <p><b>Owner:</b> Thaneshwar Sahu</p>
-          <p><b>Mobile:</b> <a href="tel:+917773868330">+91 7773868330</a></p>
-          <p><b>Email:</b> <a href="mailto:durgachoicecenter99@gmail.com">thaneshwarsahu010@gmail.com</a></p>
-          <p><b>Address:</b> Durga Choice Center, Armarikala, Dist-Balod, Chhattisgarh 491222</p>
-        </div>
-        <div class="footer-box">
-          <h3>Important Links</h3>
-          <ul>
-            <li><a href="latestjob.html">Latest Job</a></li>
-            <li><a href="admitcurd.html">Admit Card</a></li>
-            <li><a href="result.html">Result</a></li>
-            <li><a href="syllaus.html">Syllabus</a></li>
-          </ul>
-        </div>
-        <div class="footer-box">
-          <h3>Our Location</h3>
-          <iframe src="https://www.google.com/maps?q=Armarikala,Chhattisgarh&output=embed" width="100%" height="180" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-      </div>
-      <div class="footer-bottom">© 2025 Durga CSC.IN | Developed by Thaneshwar Sahu</div>
-    </footer>
-
-    <!-- Floating Social Buttons -->
-    <div class="floating-social">
-      <a href="https://whatsapp.com/channel/0029VaB2q8hH5JLrbc43ft42" target="_blank" class="btn-social whatsapp">WhatsApp Channel</a>
-      <a href="https://instagram.com/durga_csc.in" target="_blank" class="btn-social instagram">Instagram</a>
-    </div>
-
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search here..." onkeyup="search()">
+    <button onclick="search()">Search</button>
   </div>
 
-  <script>
-    // Card data (cleaned; set unknown/truncated entries to # or corrected links)
-    const allCards = [
-      {name:"Sarkari Result", url:"https://sarkariresult.com.cm/", color:"red"},
-      {name:"FreeJobAlert.Com", url:"https://www.freejobalert.com/", color:"yellow"},
-      {name:"Digital Seva Portal", url:"https://connect.csc.gov.in/", color:"blue"},
-      {name:"Agri Stack", url:"https://cgfr.agristack.gov.in/farmer-registry-cg/#/", color:"green"},
-      {name:"छत्तीसगढ़ भू-अ. Bhuiyan", url:"https://revenue.cg.nic.in/bhuiyanuser/User/Selection_Report_For_KhasraDetail.aspx", color:"yellow"},
-      {name:"छत्तीसगढ़ ई-डिस्ट्रिक्ट", url:"https://cgedistrict.cgstate.gov.in/home?lang=hi", color:"blue"},
-      {name:"जन भागीदारी", url:"https://fcs.cg.gov.in/citizen/", color:"red"},
-      {name:"रोज़गार इच्छुक - पंजीयन", url:"https://erojgar.cg.gov.in/MainSite/JobSeeker/RegistrationWithAdhar.aspx", color:"green"},
-      {name:"छत्तीसगढ़ श्रम विभाग", url:"https://shramevjayate.cg.gov.in/", color:"yellow"},
-      {name:"Pt. Ravishankar Shukla University", url:"https://www.prsu.ac.in/", color:"red"},
-      {name:"Hemchand Yadav University", url:"https://www.durguniversity.ac.in/", color:"chocolate"},
-      {name:"Govt Science College, Durg", url:"https://www.govtsciencecollegedurg.ac.in/", color:"brown"},
-      {name:"ITI Admissions", url:"https://cgiti.admissions.nic.in/", color:"darkblue"},
-      {name:"CG Vyapam", url:"https://vyapamprofile.cgstate.gov.in/online/", color:"darkorange"},
-      {name:"MY AADHAR", url:"https://myaadhaar.uidai.gov.in/", color:"gold"},
-      {name:"Voter Card", url:"https://voters.eci.gov.in/login", color:"cyan"},
-      {name:"CG Post Matric Scholarship", url:"https://postmatric-scholarship.cg.nic.in/LoginPage.aspx", color:"fuchsia"},
-      {name:"PF (EPF India)", url:"https://www.epfindia.gov.in/site_en/index.php", color:"maroon"},
-      {name:"Ayushman Bharat", url:"https://beneficiary.nha.gov.in/", color:"red"},
-      {name:"SSC/GD", url:"https://sscsr.gov.in/indexes/candidate_corner_admitcard", color:"cyan"},
-      {name:"CG Transport / HSRP", url:"https://cgtransport.gov.in/#", color:"green"},
-      {name:"Vahan Citizen Services", url:"https://vahan.parivahan.gov.in/vahanservice/vahan/ui/statevalidation/homepage.xhtml", color:"blue"},
-      {name:"PDF-Resize", url:"https://pdf.pi7.org/resize-pdf", color:"red"},
-      {name:"All-Type-Resize", url:"https://www.sarkariresultcm.in/free-online-photo-resizer/", color:"yellow"},
-      {name:"BG-Remove", url:"https://www.remove.bg/", color:"blue"},
-      {name:"Resume & CV Maker", url:"https://sarkariresulttools.net/resume-maker/", color:"green"},
-      {name:"Add Name & Date", url:"https://sarkaricsc.com/sarkari-tools/", color:"red"}
-    ];
+  
+  
 
-    const cardContainer = document.getElementById("cardContainer");
-    const moreBtn = document.getElementById("moreBtn");
-    let showingAll = false;
+</nav>
 
-    function renderCards() {
-      cardContainer.innerHTML = "";
-      const displayCards = showingAll ? allCards : allCards.slice(0, 4);
-      displayCards.forEach(card => {
-        const div = document.createElement("div");
-        div.className = `card ${card.color}`;
-        const a = document.createElement("a");
-        a.href = card.url;
-        a.target = "_blank";
-        a.textContent = card.name;
-        div.appendChild(a);
-        cardContainer.appendChild(div);
-      });
-      moreBtn.textContent = showingAll ? "Show Less" : "More Curd / Sides";
-    }
+<div id="searchResultBox">
+  <span class="closeBox" onclick="closeSearchBox()">X</span>
+  <div id="searchResults"></div>
+</div>
 
-    function showMore() { showingAll = !showingAll; renderCards(); }
-    renderCards();
+<div class="notice">
+  <strong style="color:darkblue; font-size:20px;"></strong>
+  <marquee behavior="scroll" direction="left" style="font-size:18px; color:darkblue;">
+    "ओम कृष्णाय वासुदेवाय <span style='color:darkorange;'>हरये परमात्मने,</span><span style='color:darkred;'> प्रणतः क्लेशनाशाय</span><span style='color:gold;'> गोविंदाय नमो नमः"। </span><span style="color:darkblue;">////// आज के डिजिटल युग में हर नागरिक को सरकारी काम (Sarkari Kaam) जैसे आधार कार्ड, पैन कार्ड, नरेगा जॉब कार्ड, राशन कार्ड, और विभिन्न योजनाओं की जानकारी की जरूरत होती है। हम आपके लिए लाए हैं एक ऐसा प्लेटफॉर्म जहाँ ये सभी Sarkari Kam एक क्लिक में उपलब्ध हैं।</span>
+  </marquee>
+  <p><font color="maroon">Get Online Form, Results, Admit Card, Answer Key, Syllabus, Career News, Sarkari Yojana, Scholarship, Sarkari Notice etc.</font></p>
+  
+</div>
+<div class="live-now-container">
+    <div class="live-now">
+      <span class="dot"></span>
+      LIVE NOW
+    </div>
+</div>
 
-    // Search functionality
-    const siteData = allCards.map(c => ({ name: c.name, url: c.url }));
-    function performSearch() {
-      const input = document.getElementById('searchInput').value.trim().toLowerCase();
-      const box = document.getElementById('searchResultBox');
-      const resultsDiv = document.getElementById('searchResults');
-      resultsDiv.innerHTML = '';
-      if (!input) { box.style.display = 'none'; return; }
-      const results = siteData.filter(item => item.name.toLowerCase().includes(input));
-      if (results.length > 0) {
-        results.forEach(item => {
-          const a = document.createElement('a');
-          a.href = item.url || '#';
-          a.target = "_blank";
-          a.textContent = item.name;
-          resultsDiv.appendChild(a);
-        });
-      } else {
-        resultsDiv.innerHTML = '<div>No results found.</div>';
-      }
-      box.style.display = 'block';
-    }
-    function closeSearchBox() { document.getElementById('searchResultBox').style.display = 'none'; document.getElementById('searchInput').value = ''; }
+<h2 style="text-align:center; color:#003366;">Important Links</h2>
+<p><font size="3px" color="darkblue"><b></b></font></p>
+<div class="pro-note">
+  <div class="note-header">
+    🏠 घर बैठे सेवा उपलब्ध
+  </div>
 
-    // Dropdown guard (only add listeners if element exists)
-    const dropdown = document.querySelector('.dropdown');
-    if (dropdown) {
-      const dropdownContent = dropdown.querySelector('.dropdown-content');
-      dropdown.addEventListener('mouseenter', () => { if (dropdownContent) dropdownContent.style.display = 'block'; });
-      dropdown.addEventListener('mouseleave', () => { if (dropdownContent) setTimeout(()=>dropdownContent.style.display='none', 200); });
-    }
+  <div class="note-body">
+    💁🏻‍♂️ सभी प्रकार के ऑनलाइन फॉर्म हेतु हमें WhatsApp मैसेज या कॉल करें
+  </div>
 
-    // Popup logic
-    let joined = localStorage.getItem('joinedGroup');
-    window.addEventListener('load', function () {
-      if (!joined) {
-        // show popup only on mobile devices (<=600px width)
-        if (window.innerWidth <= 600) {
-          setTimeout(showPopup, 2000);
-        }
-      }
-    });
+  <div class="note-buttons">
+    <a href="https://wa.me/917773868330" class="btn whatsapp" target="_blank">WhatsApp</a>
+    <a href="tel:917773868330" class="btn call">Call Now</a>
+  </div>
+</div>
+<!-- Popup HTML -->
+<div id="popupOverlay">
+  <div id="popupBox">
+    <h2>Join WhatsApp Group</h2>
+    <p>Click below to join our official WhatsApp Group</p>
+    <a class="joinBtn" onclick="joinClicked()" href="https://chat.whatsapp.com/GIHDSc3kSL5GsvJDuYBu28" target="_blank">JOIN GROUP</a>
+    <div class="closeBtn" onclick="closePopup()">Close</div>
+  </div>
+</div>
+<div class="btn-box" id="cardContainer">
+  <!-- Cards inserted via JS for toggle -->
+</div>
+<button class="more-btn" id="moreBtn" onclick="showMore()">More Curd / Sides</button>
+<br>
+<br>
+<!-- Boxes -->
+<div class="container">
+  <div class="box">
+    <h2>Results</h2>
+    <ul>
+      <marquee direction="up" scrollamount="2"onmouseover="this.stop()" 
+         onmouseout="this.start()" style="height: calc(100% - 30px);">
+      <li><a href="https://durg.ucanapply.com/result-details">🔔Hemchand yadav</a></li>
+      <li><a href="http://www.prsuuniv.in/login">🔔Pt. Ravishankar Shukla University, Raipur</a></li>
+      <li><a href="https://cgbse.nic.in/">🔔10th</a></li>
+      <li><a href="https://cgbse.nic.in/">🔔12th</a></li>
+      <li><a href="https://vyapamcg.cgstate.gov.in/Post?PostID=RESULT">🔔Cg vyapam result</a></li>
+      <li><a href="#"></a></li>
+       <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+    </marquee>
+    </ul>
+  </div>
+  <div class="box">
+    <h2>Admit Cards</h2>
+    <ul>
+      <marquee direction="up" scrollamount="2"onmouseover="this.stop()" 
+         onmouseout="this.start()" style="height: calc(100% - 30px);">
+      <li><a href="https://vyapamprofile.cgstate.gov.in/Online/UserLogin.aspx">"📢Amin patwari admit card" </a></li>
+      <li><a href="https://rrb.digialm.com/EForms/configuredHtml/33015/96410/login.html">"📢Card 2025  RRB Group D Admit Card 2025"</a></li>
+      <li><a href="https://ssc.gov.in">"📢 Delhi Police Head Constable (Ministerial) Admit Card 2025"</a></li>
+      <li><a href="https://cisfrectt.cisf.gov.in/ct_tradesman_2024/ct_tradesman_login.php">"📢 CISF CT/TM 2024 – Trade Test & Documentation Admit Card जारी "</a></li>
+      <li><a href="#">"📢Coming soon"</a></li>
+    </marquee>
+    </ul>
+  </div>
+  <div class="box">
+    <h2>Latest Notification</h2>
+    <ul>
+      <marquee direction="up" scrollamount="2"onmouseover="this.stop()" 
+         onmouseout="this.start()" style="height: calc(100% - 30px);">
+      <li><a href="https://voters.eci.gov.in/searchInSIR/S2UA4DPDF-JK4QWODSE">🔔"SIR ( 2003 ,2002 वोटर लिस्ट )"</a></li>
+      <li><a href="https://voters.eci.gov.in/">🔔"SIR फॉर्म ऑनलाइन भरे"</a></li>
+      <li><a href="https://voters.eci.gov.in/">🔔"BLO ने सब्मिट किया की नहीं जाने"</a></li>
+      <li><a href="fromA.html">🔔"ड्राइविंग लाइसेंस और RC में मोबाइल नंबर अपडेट करे(आधार ऑथेंटिकेशन )"</a></li>
+      <li><a href="fromA.html">🔔"गाड़ी मालिक मोबाइल नंबर अपडेट करे"</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.nic.onenationonecard&hl=hi">🔔"आधार नंबर से राशन कार्ड डाऊनलोड करे"</a></li>
+      <li><a href="fromA.html">🔔"चालान चेक करे"</a></li>
+      </marquee>
 
-    function showPopup() {
-      document.getElementById('popupOverlay').style.display = 'flex';
-    }
-    function closePopup() {
-      document.getElementById('popupOverlay').style.display = 'none';
-    }
-    function joinClicked() {
-      localStorage.setItem('joinedGroup', 'yes');
-      joined = 'yes';
-      closePopup();
-    }
-  </script>
+    </ul>
+  </div>
+  <div class="box">
+    <h2>Tools</h2>
+    <ul>
+      <li><a href="https://pdf.pi7.org/resize-pdf">PDF-Resize</a></li>
+      <li><a href="https://www.sarkariresultcm.in/free-online-photo-resizer/">All-Type-Resize</a></li>
+      <li><a href="https://www.remove.bg/">BG-Remove</a></li>
+      <li><a href="https://sarkariresulttools.net/resume-maker/">Resume & CV Maker</a></li>
+      <li><a href="https://sarkaricsc.com/sarkari-tools/">Add Name & Date</a></li>
+      <li><a href="https://scholarships.gov.in/otrapplication/#/">NSP नेशनल स्कालरशिप OTR</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// Full card data
+const allCards = [
+{name:"Sarkari Result",url:"https://sarkariresult.com.cm/",color:"red"},
+{name:"FreeJobAlert.Com",url:"https://www.freejobalert.com/",color:"yellow"},
+{name:"Digital Seva Portal",url:"https://connect.csc.gov.in/account/authorize?response_type=code&client_id=0f8ca686-5a31-46b8-bb51-d9834ba9fa9d&redirect_uri=https%3A%2F%2Fdigitalseva.csc.gov.in%2Fauth%2Fcallback%2F&state=45714",color:"darkorange"},
+{name:"Agri Stack",url:"https://cgfr.agristack.gov.in/farmer-registry-cg/#/",color:"green"},
+{name:"छत्तीसगढ़ भू-अ. Bhuiyan",url:"https://revenue.cg.nic.in/bhuiyanuser/User/Selection_Report_For_KhasraDetail.aspx",color:"yellow"},
+{name:"छत्तीसगढ़ ई-डिस्ट्रिक्ट",url:"https://cgedistrict.cgstate.gov.in/home?lang=hi",color:"blue"},
+{name:"जन भागीदारी",url:"https://fcs.cg.gov.in/citizen/",color:"red"},
+{name:"रोज़गार इच्छुक - पंजीयन",url:"https://erojgar.cg.gov.in/MainSite/JobSeeker/RegistrationWithAdhar.aspx",color:"green"},
+{name:"छत्तीसगढ़ श्रम विभाग",url:"https://shramevjayate.cg.gov.in/",color:"yellow"},
+{name:"Pt. Ravishankar Shukla University",url:"https://www.prsu.ac.in/",color:"red"},
+{name:"Hemchand Yadav University",url:"https://www.durguniversity.ac.in/",color:"chocolate"},
+{name:"Govt Science College, Durg",url:"https://www.govtsciencecollegedurg.ac.in/",color:"brown"},
+{name:"Madanlal Sahu Govt College Armarikala",url:"https://gc-armarikala.in/",color:"coral"},
+{name:"ITI Admissions",url:"https://cgiti.admissions.nic.in/",color:"darkblue"},
+{name:"CG Vyapam",url:"https://vyapamprofile.cgstate.gov.in/online/",color:"darkorange"},
+{name:"MY AADHAR",url:"https://myaadhaar.uidai.gov.in/",color:"gold"},
+{name:"Voter Card",url:"https://voters.eci.gov.in/login",color:"cyan"},
+{name:"ABC ID",url:"https://www.abc.gov.in/",color:"purple"},
+{name:"CG Post Matric Scholarship",url:"https://postmatric-scholarship.cg.nic.in/LoginPage.aspx",color:"fuchsia"},
+{name:"PF(Ministry of Labour & Employment, Government of India)",url:"https://www.epfindia.gov.in/site_en/index.php",color:"maroon"},
+{name:"नगर सेना",url:"https://firenoc.cg.gov.in/",color:"maroon"},
+{name:"RRB",url:"#",color:"blue"},
+{name:"BSF",url:"https://rectt.bsf.gov.in/",color:"brown"},
+{name:"PEN-CURD",url:"https://apnapanindia.co.in/index.php?msg=Logout%20Successfully.",color:"yellow"},
+{name:"Ayushman Bharat",url:"https://beneficiary.nha.gov.in/",color:"red"},
+{name:"SSC/GD",url:"https://sscsr.gov.in/indexes/candidate_corner_admitcard",color:"cyan"},
+{name:"JEE MAIS",url:"#",color:"brown"},
+{name:"SCERT CG",url:"#",color:"darkorange"},
+{name:"CG Transport / HSRP",url:"https://cgtransport.gov.in/#",color:"green"},
+{name:"Vahan Citizen Services",url:"https://vahan.parivahan.gov.in/vahanservice/vahan/ui/statevalidation/homepage.xhtml",color:"blue"},
+{name:"PDF-Resize",url:"https://pdf.pi7.org/resize-pdf",color:"red"},
+{name:"All-Type-Resize",url:"https://www.sarkariresultcm.in/free-online-photo-resizer/",color:"yellow"},
+{name:"BG-Remove",url:"https://www.remove.bg/",color:"blue"},
+{name:"Resume & CV Maker",url:"https://sarkariresulttools.net/resume-maker/",color:"green"},
+{name:"Add Name & Date",url:"https://sarkaricsc.com/sarkari-tools/",color:"red"}
+];
+
+const cardContainer = document.getElementById("cardContainer");
+const moreBtn = document.getElementById("moreBtn");
+
+let showingAll = false;
+
+function renderCards() {
+  cardContainer.innerHTML = "";
+  let displayCards = showingAll ? allCards : allCards.slice(0,4);
+  displayCards.forEach(card=>{
+    let div = document.createElement("div");
+    div.className = `card ${card.color}`;
+    let a = document.createElement("a");
+    a.href = card.url;
+    a.target="_blank";
+    a.textContent = card.name;
+    a.style.color="white";
+    div.appendChild(a);
+    cardContainer.appendChild(div);
+  });
+  moreBtn.textContent = showingAll ? "Show Less" : "More Curd / Sides";
+}
+
+function showMore() {
+  showingAll = !showingAll;
+  renderCards();
+}
+
+renderCards();
+
+// Search functionality
+const siteData = allCards.map(c=>({name:c.name,url:c.url}));
+
+function search(){
+  let input=document.getElementById('searchInput').value.toLowerCase();
+  let box=document.getElementById('searchResultBox');
+  let resultsDiv=document.getElementById('searchResults');
+  resultsDiv.innerHTML='';
+  if(input===''){box.style.display='none'; return;}
+  let results=siteData.filter(item=>item.name.toLowerCase().includes(input));
+  if(results.length>0){results.forEach(item=>{let a=document.createElement('a'); a.href=item.url; a.target="_blank"; a.textContent=item.name; resultsDiv.appendChild(a);});}
+  else{resultsDiv.innerHTML='<div>No results found.</div>';}
+  box.style.display='block';
+}
+
+function closeSearchBox(){document.getElementById('searchResultBox').style.display='none'; document.getElementById('searchInput').value='';}
+
+
+const dropdown = document.querySelector('.dropdown');
+const dropdownContent = document.querySelector('.dropdown-content');
+
+dropdown.addEventListener('mouseenter', () => {
+    dropdownContent.style.display = 'block';
+});
+
+dropdown.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+        dropdownContent.style.display = 'none';
+    }, 200); // 200ms delay
+});
+
+
+// Check if popup was already shown & joined
+let joined = localStorage.getItem('joinedGroup');
+
+window.onload = function () {
+  if (!joined) {
+    setTimeout(showPopup, 3000);
+    setInterval(showPopup, 30000);
+  }
+};
+
+function showPopup() {
+  // Mobile only condition
+  if (window.innerWidth <= 600) {
+    document.getElementById('popupOverlay').style.display = 'flex';
+    document.getElementById('popupBox').style.animation = 'slideIn 0.4s ease-out';
+  }
+}
+
+function closePopup() {
+  document.getElementById('popupOverlay').style.display = 'none';
+}
+
+// When user clicks JOIN GROUP
+function joinClicked() {
+  localStorage.setItem('joinedGroup', 'yes');
+}
+</script>
+<!--mey div-->
+</div>
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-box">
+        <h3>About Us</h3>
+        <p>Durga CSC.IN – All Online Forms, Sarkari Yojana, Govt Services, Exam Forms, Result, Admit Card & More.</p>
+      </div>
+      <div class="footer-box">
+        <h3>Contact Us</h3>
+        <p><b>Owner:</b> Thaneshwar Sahu</p>
+        <p><b>Mobile:</b> <a href="tel:+917773868330">+91 7773868330</a></p>
+        <p><b>Email:</b> <a href="mailto:durgachoicecenter99@gmail.com">thaneshwarsahu010@gmail.com</a></p>
+        
+        <p><b>Address:</b> Durga Choice Center, Armarikala,Dist-Balod, Chhattisgarh Pin Code (491222)</p>
+      </div>
+      <div class="footer-box">
+        <h3>Important Links</h3>
+        <ul>
+          <li><a href="latestjob.html">Latest Job</a></li>
+          <li><a href="admitcurd.html">Admit Card</a></li>
+          <li><a href="result.html">Result</a></li>
+          <li><a href="syllaus.html">Syllabus</a></li>
+          <li><a href="https://connect.csc.gov.in/account/authorize?response_type=code&client_id=0f8ca686-5a31-46b8-bb51-d9834ba9fa9d&redirect_uri=https%3A%2F%2Fdigitalseva.csc.gov.in%2Fauth%2Fcallback%2F&state=63148">CSC Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <h3>Our Location</h3>
+        <iframe src="https://www.google.com/maps?q=Armarikala,Chhattisgarh&output=embed" width="100%" height="180" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Durga CSC.IN | Developed by Thaneshwar Sahu</div>
+  </footer>
+  <!-- Floating Social Buttons -->
+<div class="floating-social">
+  <a href="https://whatsapp.com/channel/0029VaB2q8hH5JLrbc43ft42" target="_blank" class="btn-social whatsapp">WhatsApp Channel</a>
+  <a href="https://instagram.com/durga_csc.in" target="_blank" class="btn-social instagram">Instagram</a>
+</div>
+
 </body>
 </html>
