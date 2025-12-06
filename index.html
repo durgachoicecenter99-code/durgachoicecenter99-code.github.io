@@ -16,9 +16,46 @@
 <style>
 body {margin:0; font-family:Arial, sans-serif; background:#f4f4f4;}
 header {background:#c10000; padding:20px; text-align:center; color:white; font-size:50px; font-weight:bold; font-family:'Oswald',sans-serif;}
-nav {background:#003366; padding:10px; display:flex; flex-wrap:wrap; align-items:center; gap:10px;}
-nav a {color:white; text-decoration:none; margin:8px 15px; font-size:16px; font-weight:bold;}
-.notice {padding:20px; text-align:center; font-size:18px;}
+nav {
+    background: #003366;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px; /* gap कम किया */
+}
+
+/* Normal nav links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 10px;   /* margin कम किया */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 6px 10px;  /* fixed padding so no movement */
+    border-radius: 4px;
+    transition: 0.3s ease;
+}
+
+/* Hover effect (NO gap increase) */
+nav a:hover {
+    color: #ffdd57;
+    background: rgba(255,255,255,0.15);
+    /* padding SAME rakhi → gap nahi badhega */
+    padding: 6px 10px;
+}
+
+.notice {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.notice {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
 .btn-box {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; padding:20px;}
 .btn-box a{text-decoration:none; color:inherit;}
 .card {background:#fff; padding:20px; text-align:center; font-size:20px; border-radius:10px; cursor:pointer; box-shadow:0 6px 12px rgba(0,0,0,0.25); transition: transform 0.2s ease, box-shadow 0.2s ease;}
@@ -65,40 +102,21 @@ ul li a:hover {text-decoration:underline; color:#000;}
 .more-btn {display:block; text-align:center; margin:10px auto; padding:12px 25px; background:#007bff; color:white; font-size:16px; border:none; border-radius:10px; cursor:pointer;}
 .more-btn:hover {background:#0056b3;}
 
- .pro-note {
-    background: #fff8d1;
-    border-left: 6px solid #f5b400;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 20px;
-    font-family: Arial, sans-serif;
-    animation: fadeIn 0.8s ease-in-out;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+ .pro-note { background: #fff8d1; border-left: 6px solid #f5b400;
+  padding: 20px;border-radius: 12px;
+    margin: 20px; font-family: Arial, sans-serif; animation: fadeIn 0.8s ease-in-out; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 
-  .note-header {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 8px;
+  .note-header { font-size: 22px; font-weight: bold; margin-bottom: 8px;
   }
 
-  .note-body {
-    font-size: 18px;
-    line-height: 26px;
+  .note-body { font-size: 18px; line-height: 26px;
   }
 
-  .note-buttons {
-    margin-top: 15px;
+  .note-buttons { margin-top: 15px;
   }
 
-  .btn {
-    text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: 10px;
-    display: inline-block;
+  .btn { text-decoration: none; padding: 10px 18px; border-radius: 8px; font-size: 16px; font-weight: bold; margin-right: 10px; display: inline-block;
   }
 
   .whatsapp {
@@ -334,16 +352,10 @@ ul li a:hover {text-decoration:underline; color:#000;}
   <a href="ppt.html">PPT</a>
    <a href="disclaimer.html">Disclaimer</a>
    <a href="PrivacyPolicy.html">Privacy Policy</a>
+    <a href="pvc.html">PVC-Curd print</a>
    <!-- PAY BUTTON DROPDOWN -->
-<div class="dropdown">
-    <div class="dropbtn"></div>
-    <div class="dropdown-content">
-        <a href="#" target="_blank">Syllabus Fee</a>
-        <a href="#" target="_blank">Paper Fee</a>
-        <a href="#" target="_blank">PPT Fee</a>
-        <a href="#" target="_blank">Other Fee</a>
-    </div>
-</div>
+
+
 
 
   <div class="search-box">
