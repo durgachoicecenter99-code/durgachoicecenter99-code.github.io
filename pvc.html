@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DurgaCSC.in — PVC Card Printing</title>
+<style>
+  /* ===== Professional, Minimal & Accessible Design ===== */
+  :root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --accent:#0b4a78; /* deep blue */
+    --accent-2:#ffb400; /* warm highlight */
+    --whatsapp:#25D366;
+    --radius:10px;
+    --shadow: 0 6px 18px rgba(10,20,30,0.06);
+    --glass: rgba(255,255,255,0.6);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#0f1724;line-height:1.45}
+
+  /* Header */
+  header{background:#fff;border-bottom:1px solid #e6eef8;padding:18px 20px;display:flex;align-items:center;gap:18px}
+  .brand{font-size:20px;font-weight:800;color:var(--accent)}
+  .tag{color:var(--muted);font-size:13px}
+  .home-btn{margin-left:auto;text-decoration:none;background:transparent;color:var(--accent);padding:8px 12px;border-radius:8px;border:1px solid transparent;font-weight:700}
+  .home-btn:hover{border-color:#e2e8f0;background:#f8fafc}
+
+  /* Navigation (compact) */
+  nav{display:flex;gap:8px;padding:12px 20px;background:transparent;flex-wrap:wrap}
+  .menu-item{padding:8px 12px;border-radius:8px;color:var(--accent);text-decoration:none;font-weight:600;font-size:13px}
+  .menu-item:hover{background:var(--glass)}
+
+  /* Layout */
+  .container{max-width:1100px;margin:26px auto;padding:0 16px}
+  h1{margin:6px 0 18px 0;font-size:22px;color:#0b2340}
+  p.lead{color:var(--muted);margin-top:0}
+
+  /* Cards grid */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .pvc-card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;display:flex;flex-direction:column;align-items:stretch}
+  .pvc-card:hover{transform:translateY(-6px);box-shadow:0 10px 28px rgba(10,20,30,0.08)}
+  .thumb{height:150px;border-radius:8px;overflow:hidden;background:#eef3fb;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+  .title{margin:12px 0 6px 0;font-size:16px;color:var(--accent);font-weight:700}
+  .desc{color:var(--muted);font-size:14px;margin:0 0 12px 0}
+  .actions{display:flex;gap:8px;margin-top:auto}
+  .btn{flex:1;padding:10px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+  .btn.secondary{background:transparent;border:1px solid #d9e6f5;color:var(--accent)}
+  .btn.primary{background:var(--whatsapp);color:#000}
+
+  /* Info & list */
+  .info-box{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);margin-top:18px}
+  .info-box ul{margin:10px 0 0 18px}
+
+  /* Price note */
+  .price-note{background:#fff8e6;border-left:6px solid var(--accent-2);padding:12px;border-radius:8px;margin-top:18px;color:#533f03}
+
+  /* Calculator */
+  .calc{max-width:480px;margin:18px auto;padding:16px;border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+  .calc input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef8;margin-top:8px}
+  .calc button{width:100%;padding:10px;margin-top:12px;border-radius:8px;border:none;background:var(--accent);color:#fff;font-weight:700}
+  .result{font-weight:800;color:var(--accent);text-align:center;margin-top:12px}
+
+  /* Delivery badge */
+  .badge{display:inline-block;background:#f1fbf6;color:#0a5132;padding:8px 18px;border-radius:30px;font-weight:700;border:1px solid #d1f3df}
+
+  /* Footer */
+  footer{margin-top:28px;background:#fff;padding:18px 20px;border-top:1px solid #e6eef8}
+  .footer-inner{max-width:1100px;margin:0 auto;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .contact{color:var(--muted)}
+  .hours{color:var(--muted);font-size:14px}
+
+  /* Modal (simple) */
+  #modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,10,20,0.45);z-index:60}
+  .modal-card{width:720px;max-width:95%;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 20px 40px rgba(10,20,30,0.12)}
+  .modal-preview{height:260px;border-radius:8px;background:#f8fafc;padding:14px}
+  .modal-row{display:flex;gap:8px;margin-top:12px}
+  .modal-row input, .modal-row select{flex:1;padding:10px;border-radius:8px;border:1px solid #e6eef8}
+  .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+
+  @media(max-width:520px){.modal-row{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;align-items:center;gap:12px;max-width:1100px;margin:0 auto;width:100%">
+    <div>
+      <div class="brand">DurgaCSC.in</div>
+      <div class="tag">PVC Card Printing • Official-style PVC • All India Delivery</div>
+    </div>
+    <a class="home-btn" href="index.html">🏠 Home</a>
+  </div>
+</header>
+
+<nav style="max-width:1100px;margin:12px auto 0 auto">
+  <a class="menu-item" href="#cards">Cards</a>
+  <a class="menu-item" href="#types">Types</a>
+  <a class="menu-item" href="#pricing">Pricing</a>
+  <a class="menu-item" href="#contact">Contact</a>
+</nav>
+
+<main class="container">
+  <h1 id="cards">Popular PVC Card Designs</h1>
+  <p class="lead">प्रोफेशनल क्वालिटी के PVC कार्ड — ऑफिस/सरकारी/इवेंट/स्टूडेंट/स्टाफ के लिए। नीचे demo देखें और WhatsApp से बुक करें।</p>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+    <div class="badge">🚚 All India Delivery Available</div>
+    <div style="color:var(--muted);font-size:14px">Local price per card: <strong>₹100</strong></div>
+  </div>
+
+  <section class="card-grid" aria-label="PVC cards">
+
+    <!-- PAN -->
+    <article class="pvc-card" data-title="PAN">
+      <div class="thumb"><img src="https://g2cconnect.com/wp-content/uploads/2024/01/pan-card.jpg" alt="PAN demo" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="title">PAN Card  (PVC )</div>
+      <p class="desc">Official layout printed on durable PVC with clear text & laminate,Waterproof  finish.</p>
+      <div class="actions">
+        <button class="btn secondary" onclick="openModal('PAN Card')">Preview</button>
+        <button class="btn primary" onclick="openWhatsApp('PAN Card')">Book on WhatsApp</button>
+      </div>
+    </article>
+
+    <!-- Aadhar -->
+    <article class="pvc-card" data-title="Aadhaar">
+      <div class="thumb"><img src="https://assets.upstox.com/content/assets/images/cms/2024312/aadhaar-card-7579588_1280_73580.png" alt="Aadhaar demo" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="title">Aadhaar Card (PVC)</div>
+      <p class="desc">QR compatible PVC card, suited for scanners and long-term Waterproof use.</p>
+      <div class="actions">
+        <button class="btn secondary" onclick="openModal('Aadhaar Card')">Preview</button>
+        <button class="btn primary" onclick="openWhatsApp('Aadhaar Card')">Book on WhatsApp</button>
+      </div>
+    </article>
+
+    <!-- Voter -->
+    <article class="pvc-card" data-title="Voter">
+      <div class="thumb"><img src="https://www.pvcprintstore.com/wp-content/uploads/2025/03/VOTE-FRONT.jpg" alt="Voter demo" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="title">Voter ID (PVC)</div>
+      <p class="desc">Crisp typography and secure Waterproof printing for voter identification.</p>
+      <div class="actions">
+        <button class="btn secondary" onclick="openModal('Voter ID')">Preview</button>
+        <button class="btn primary" onclick="openWhatsApp('Voter ID')">Book on WhatsApp</button>
+      </div>
+    </article>
+
+    <!-- Ayushman -->
+    <article class="pvc-card" data-title="Ayushman">
+      <div class="thumb"><img src="https://pvccardprinting.in/wp-content/uploads/2018/02/pvc-ayushman-bharat-health-card.webp" alt="Ayushman demo" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="title">Ayushman / ABHA (PVC)</div>
+      <p class="desc">Health ID cards Waterproof printed with high-quality inks suitable for hospital use.</p>
+      <div class="actions">
+        <button class="btn secondary" onclick="openModal('Ayushman Card')">Preview</button>
+        <button class="btn primary" onclick="openWhatsApp('Ayushman Card')">Book on WhatsApp</button>
+      </div>
+    </article>
+
+    <!-- Custom -->
+    <article class="pvc-card" data-title="Custom">
+      <div class="thumb"><img src="https://files.printo.in/site/20230128_144523338198_ddca36_Teslin-card.jpg" alt="Custom demo" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="title">Custom PVC</div>
+      <p class="desc">Choose any design,Waterproof — license, RC, staff ID, student card or custom artwork.</p>
+      <div class="actions">
+        <button class="btn secondary" onclick="openModal('Custom PVC')">Preview</button>
+        <button class="btn primary" onclick="openWhatsApp('Custom PVC')">Book on WhatsApp</button>
+      </div>
+    </article>
+
+  </section>
+
+  <section id="types" class="info-box">
+    <h2 style="margin:0 0 8px 0;color:var(--accent)">हम जिन प्रकार के PVC बनाते हैं</h2>
+    <ul>
+      <li>Driving Licence</li>
+      <li>RC Smart Card</li>
+      <li>Aadhaar PVC</li>
+      <li>PAN PVC</li>
+      <li>Voter ID PVC</li>
+      <li>ABC ID, E-Shramik</li>
+      <li>Ayushman / ABHA</li>
+      <li>Student & Employee ID</li>
+      <li>Membership Cards & Custom Designs</li>
+    </ul>
+  </section>
+
+  <section id="pricing" class="price-note">
+    <strong>मूल्य नीति (Transparent)</strong>
+    <p style="margin:8px 0 0 0">Local market price per card: <strong>₹150</strong>. For courier orders (outside city) additional courier charge is applied — typical courier ₹150–₹200 per order. We recommend setting final customer price accordingly so there is no loss to you.</p>
+  </section>
+
+  <div class="calc" aria-hidden="false">
+    <h3 style="margin:0;color:var(--accent)">Price Calculator</h3>
+    <label style="display:block;margin-top:8px;color:var(--muted)">Local price (per card)</label>
+    <input id="localPrice" type="number" value="100">
+    <label style="display:block;margin-top:8px;color:var(--muted)">Courier charge (if outside city)</label>
+    <input id="courier" type="number" placeholder="e.g. 120">
+    <button onclick="calcPrice()">Calculate Final Price</button>
+    <div id="result" class="result" aria-live="polite"></div>
+  </div>
+
+  <!-- Order via WhatsApp quick form -->
+  <div class="info-box" style="margin-top:18px">
+    <h2 style="margin:0 0 8px 0;color:var(--accent)">Order Form (WhatsApp)</h2>
+    <p class="lead">नाम, फोन और पता भरें — हम आपको WhatsApp पर भेज देंगे।</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <input id="oName" placeholder="नाम" style="padding:10px;border-radius:8px;border:1px solid #e6eef8;flex:1;min-width:180px">
+      <input id="oPhone" placeholder="मोबाइल (10-12 digits)" style="padding:10px;border-radius:8px;border:1px solid #e6eef8;flex:1;min-width:180px">
+      <select id="oType" style="padding:10px;border-radius:8px;border:1px solid #e6eef8;min-width:180px">
+        <option>PAN</option>
+        <option>Aadhaar</option>
+        <option>Voter ID</option>
+        <option>Ayushman</option>
+        <option>Driving Licence</option>
+        <option>RC</option>
+        <option>Student ID</option>
+        <option>Custom PVC</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px;align-items:center">
+      <input id="oQty" type="number" value="1" min="1" style="width:100px;padding:10px;border-radius:8px;border:1px solid #e6eef8">
+      <button class="btn primary" onclick="submitOrder()">Send Order on WhatsApp</button>
+      <button class="btn secondary" onclick="resetOrder()">Clear</button>
+    </div>
+    <div id="orderNote" style="margin-top:10px;color:var(--muted);font-size:13px">हम आपको WhatsApp पर ऑर्डर का कॉन्फर्मेशन और अगला स्टेप बताएंगे।</div>
+  </div>
+
+</main>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <strong>DurgaCSC.in</strong>
+      <div class="contact" style="margin-top:6px">Helpline: +91 77738 68330 • Email: support@durgacsc.in</div>
+    </div>
+    <div class="hours">Working: Mon–Sat, 9:30am – 7:00pm</div>
+    <div style="margin-left:auto;color:var(--muted)">© 2025 DurgaCSC.in</div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div id="modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <strong id="modalTitle">Preview</strong>
+        <div class="tag" id="modalSub">Design preview</div>
+      </div>
+      <div><button onclick="closeModal()" class="home-btn">Close</button></div>
+    </div>
+    <div class="modal-preview" id="modalPreview"></div>
+    <div class="modal-row">
+      <input id="custName" placeholder="Name">
+      <input id="custPhoneModal" placeholder="Phone">
+    </div>
+    <div class="modal-actions">
+      <button class="btn secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn primary" id="modalBookBtn">Book on WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Config
+const WHATSAPP_NUMBER = '917773868330';
+
+// Card Preview Images
+const previewImages = {
+  "PAN Card": "https://g2cconnect.com/wp-content/uploads/2024/01/pan-card.jpg",
+  "Aadhaar Card": "https://assets.upstox.com/content/assets/images/cms/2024312/aadhaar-card-7579588_1280_73580.png",
+  "Voter ID": "https://www.pvcprintstore.com/wp-content/uploads/2025/03/VOTE-FRONT.jpg",
+  "Ayushman Card": "https://pvccardprinting.in/wp-content/uploads/2018/02/pvc-ayushman-bharat-health-card.webp",
+  "Custom PVC": "https://files.printo.in/site/20230128_144523338198_ddca36_Teslin-card.jpg"
+};
+
+// WhatsApp Booking
+function openWhatsApp(type){
+  const msg = `Hi, I want to book PVC card printing. Type: ${encodeURIComponent(type)}.`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  window.open(url, '_blank');
+}
+
+// Open Modal with Preview Image
+function openModal(title){
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalSub').textContent = 'Preview for ' + title;
+
+  const preview = document.getElementById('modalPreview');
+
+  // Load Image
+  const img = previewImages[title] || "";
+  preview.innerHTML = `<img src="${img}" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">`;
+
+  // Open modal
+  document.getElementById('modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+
+  // Update WhatsApp Button inside modal
+  document.getElementById('modalBookBtn').onclick = () => openWhatsApp(title);
+}
+
+// Close Modal
+function closeModal(){
+  document.getElementById('modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Price Calculator
+function calcPrice(){
+  const base = parseFloat(document.getElementById('localPrice').value) || 0;
+  const courier = parseFloat(document.getElementById('courier').value) || 0;
+  const total = base + courier;
+  document.getElementById('result').textContent = `Final Customer Price: ₹${total}`;
+}
+
+// Order Form WhatsApp
+function submitOrder(){
+  const name = document.getElementById('oName').value.trim() || 'Customer';
+  const phone = document.getElementById('oPhone').value.trim();
+  const type = document.getElementById('oType').value;
+  const qty = document.getElementById('oQty').value || 1;
+
+  const msg =
+    `Hi, I want to book PVC cards.%0AType:%20${encodeURIComponent(type)}%0AQuantity:%20${encodeURIComponent(qty)}%0AName:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}`;
+
+  window.open(`https://wa.me/${7773868330}?text=${msg}`, '_blank');
+}
+
+function resetOrder(){
+  document.getElementById('oName').value = '';
+  document.getElementById('oPhone').value = '';
+  document.getElementById('oQty').value = 1;
+}
+
+// ESC to close modal
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') closeModal();
+});
+
+
+</script>
+
+</body>
+</html>
