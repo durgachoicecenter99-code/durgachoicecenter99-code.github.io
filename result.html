@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Durga CSC - Govt & Private Jobs, Daily Updates</title>
-  <meta name="description" content="Durga CSC - Govt & Private jobs, education updates, tools, and daily alerts.">
-  <meta name="keywords" content="CSC, Govt job, Private job, Education updates, Daily alerts, Durga CSC">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://durgacsc.in/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Durga Choice Center Armarikala</title>
@@ -15,8 +8,41 @@
 <style>
 body {margin:0; font-family:Arial, sans-serif; background:#f4f4f4;}
 header {background:#c10000; padding:20px; text-align:center; color:white; font-size:50px; font-weight:bold; font-family:'Oswald',sans-serif;}
-nav {background:#003366; padding:10px; display:flex; flex-wrap:wrap; align-items:center; gap:10px;}
-nav a {color:white; text-decoration:none; margin:8px 15px; font-size:16px; font-weight:bold;}
+nav {
+    background: #003366;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px; /* gap कम किया */
+}
+
+/* Normal nav links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 10px;   /* margin कम किया */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 6px 10px;  /* fixed padding so no movement */
+    border-radius: 4px;
+    transition: 0.3s ease;
+}
+
+/* Hover effect (NO gap increase) */
+nav a:hover {
+    color: #ffdd57;
+    background: rgba(255,255,255,0.15);
+    /* padding SAME rakhi → gap nahi badhega */
+    padding: 6px 10px;
+}
+
+.notice {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
 .notice {padding:20px; text-align:center; font-size:18px;}
 .btn-box {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; padding:20px;}
 .btn-box a{text-decoration:none; color:inherit;}
@@ -138,6 +164,7 @@ ul li a:hover {text-decoration:underline; color:#000;}
   <a href="result.html">Result</a>
   <a href="admission.html">Admission</a>
   <a href="syllaus.html">Syllabus</a>
+  <a href="ppt.html">PPT</a>
  
 
   <div class="search-box">
@@ -303,4 +330,3 @@ function closeSearchBox(){document.getElementById('searchResultBox').style.displ
   </footer>
 </body>
 </html>
-
