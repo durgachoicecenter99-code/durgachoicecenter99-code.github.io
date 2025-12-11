@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>DurgaCSC — Admin Login</title>
+  <link rel="stylesheet" href="admin.css">
+  <!-- Firebase compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="firebase.js"></script>
+</head>
+<body>
+  <div class="center-wrap">
+    <div class="card login-card">
+      <h2>Admin Login</h2>
+      <input id="email" placeholder="Email" value="admin@durgacsc.in" />
+      <input id="pass" type="password" placeholder="Password" />
+      <button id="loginBtn">Login</button>
+      <p id="msg" class="muted"></p>
+      <p class="small muted">Email: <strong>admin@durgacsc.in</strong></p>
+    </div>
+  </div>
+
+<script>
+  const loginBtn = document.getElementById('loginBtn');
+  const msg = document.getElementById('msg');
+
+  loginBtn.addEventListener('click', () => {
+    const e = document.getElementById('email').value.trim();
+    const p = document.getElementById('pass').value;
+    if(!e || !p){ msg.textContent = 'Email & Password both required'; return; }
+    msg.textContent = 'Signing in...';
+    auth.signInWithEmailAndPassword(e, p)
+      .then(_ => { msg.textContent = 'Success — Redirecting...'; window.location.href = 'admin-dashboard.html'; })
+      .catch(err => { msg.textContent = err.message; });
+  });
+
+  // quick enter key
+  document.addEventListener('keydown', (ev) => {
+    if(ev.key === 'Enter') loginBtn.click();
+  });
+</script>
+</body>
+</html>

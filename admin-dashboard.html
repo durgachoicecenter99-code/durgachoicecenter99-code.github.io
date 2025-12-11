@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>DurgaCSC — Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script src="firebase.js"></script>
+</head>
+<body>
+  <div class="topbar">
+    <div><h1>DurgaCSC Admin</h1><div class="muted">Manage site content</div></div>
+    <div class="right">
+      <span id="userEmail" class="small muted"></span>
+      <button id="logoutBtn" class="btn ghost">Logout</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="grid">
+
+      <!-- Notices -->
+      <div class="card">
+        <h3>Notices</h3>
+        <input id="noticeTitle" placeholder="Title">
+        <textarea id="noticeText" rows="3" placeholder="Notice text"></textarea>
+        <div class="row">
+          <button id="addNotice" class="btn">Add Notice</button>
+        </div>
+        <div id="noticesList" class="list"></div>
+      </div>
+
+      <!-- Jobs -->
+      <div class="card">
+        <h3>Job Posts</h3>
+        <input id="jobTitle" placeholder="Job Title">
+        <textarea id="jobDesc" rows="3" placeholder="Description"></textarea>
+        <input id="jobPdf" type="file" accept=".pdf">
+        <div class="row">
+          <button id="addJob" class="btn">Add Job</button>
+        </div>
+        <div id="jobsList" class="list"></div>
+      </div>
+
+      <!-- Admit Cards / PDFs -->
+      <div class="card">
+        <h3>Admit Card / PDFs</h3>
+        <input id="pdfTitle" placeholder="Title">
+        <input id="pdfFile" type="file" accept=".pdf">
+        <div class="row">
+          <button id="uploadPdf" class="btn">Upload PDF</button>
+        </div>
+        <div id="pdfsList" class="list"></div>
+      </div>
+
+      <!-- CSC Services -->
+      <div class="card">
+        <h3>CSC Services</h3>
+        <input id="serviceTitle" placeholder="Service Title">
+        <textarea id="serviceDesc" rows="2" placeholder="Description (optional)"></textarea>
+        <div class="row">
+          <button id="addService" class="btn">Add Service</button>
+        </div>
+        <div id="servicesList" class="list"></div>
+      </div>
+
+      <!-- Homepage -->
+      <div class="card">
+        <h3>Homepage Content</h3>
+        <textarea id="homeText" rows="5" placeholder="Hero / About text..."></textarea>
+        <div class="row">
+          <button id="saveHome" class="btn">Save Homepage</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  // auth guard
+  auth.onAuthStateChanged(user => {
+    if(!user) { window.location.href = 'admin-login.html'; return; }
+    document.getElementById('userEmail').textContent = user.email;
+    loadAll();
+  });
+  document.getElementById('logoutBtn').onclick = ()=> auth.signOut().then(()=> window.location.href='admin-login.html');
+
+  // helpers
+  function mkEl(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+  // Add Notice
+  document.getElementById('addNotice').onclick = async () => {
+    const t = document.getElementById('noticeTitle').value.trim();
+    const txt = document.getElementById('noticeText').value.trim();
+    if(!t || !txt) return alert('Title & text required');
+    const id = db.ref('notices').push().key;
+    await db.ref('notices/' + id).set({ title: t, text: txt, createdAt: Date.now() });
+    document.getElementById('noticeTitle').value=''; document.getElementById('noticeText').value='';
+  };
+
+  // Add Job
+  document.getElementById('addJob').onclick = async () => {
+    const title = document.getElementById('jobTitle').value.trim();
+    const desc = document.getElementById('jobDesc').value.trim();
+    const fileEl = document.getElementById('jobPdf');
+    if(!title || !desc) return alert('Title & description required');
+    const id = db.ref('jobs').push().key;
+    let pdfUrl = '';
+    if(fileEl.files.length){
+      const f = fileEl.files[0];
+      const ref = storage.ref('jobs/' + id + '/' + Date.now() + '_' + f.name);
+      const snap = await ref.put(f);
+      pdfUrl = await snap.ref.getDownloadURL();
+    }
+    await db.ref('jobs/' + id).set({ title, description: desc, pdfUrl, createdAt: Date.now() });
+    document.getElementById('jobTitle').value=''; document.getElementById('jobDesc').value=''; fileEl.value='';
+  };
+
+  // Upload generic PDF (Admit)
+  document.getElementById('uploadPdf').onclick = async () => {
+    const title = document.getElementById('pdfTitle').value.trim();
+    const fEl = document.getElementById('pdfFile');
+    if(!title || !fEl.files.length) return alert('Title and PDF required');
+    const f = fEl.files[0];
+    const id = db.ref('pdfs').push().key;
+    const ref = storage.ref('pdfs/' + id + '/' + Date.now() + '_' + f.name);
+    const snap = await ref.put(f);
+    const url = await snap.ref.getDownloadURL();
+    await db.ref('pdfs/' + id).set({ title, fileUrl: url, uploadedBy: auth.currentUser.email, createdAt: Date.now() });
+    document.getElementById('pdfTitle').value=''; fEl.value='';
+  };
+
+  // Add Service
+  document.getElementById('addService').onclick = async () => {
+    const t = document.getElementById('serviceTitle').value.trim();
+    const d = document.getElementById('serviceDesc').value.trim();
+    if(!t) return alert('Service title required');
+    const id = db.ref('cscServices').push().key;
+    await db.ref('cscServices/' + id).set({ title:t, description:d, order:0 });
+    document.getElementById('serviceTitle').value=''; document.getElementById('serviceDesc').value='';
+  };
+
+  // Save homepage
+  document.getElementById('saveHome').onclick = async () => {
+    const txt = document.getElementById('homeText').value;
+    await db.ref('homepage').set({ content: txt, updatedAt: Date.now() });
+    alert('Homepage content saved');
+  };
+
+  // Load lists
+  function loadAll(){
+    // Notices
+    db.ref('notices').orderByChild('createdAt').on('value', snap => {
+      const box = document.getElementById('noticesList'); box.innerHTML='';
+      const data = snap.val()||{};
+      Object.keys(data).reverse().forEach(k=>{
+        const it = data[k];
+        const el = mkEl(`<div class="list-row"><div><strong>${it.title}</strong><div class="small">${it.text}</div></div>
+          <div><button class="btn ghost" data-id="${k}" data-path="notices">Delete</button></div></div>`);
+        box.appendChild(el);
+      });
+      setDeleteHandlers();
+    });
+
+    // Jobs
+    db.ref('jobs').orderByChild('createdAt').on('value', snap => {
+      const box = document.getElementById('jobsList'); box.innerHTML='';
+      const data = snap.val()||{};
+      Object.keys(data).reverse().forEach(k=>{
+        const it = data[k];
+        const pdfLink = it.pdfUrl ? `<a target="_blank" href="${it.pdfUrl}">PDF</a>` : '-';
+        const el = mkEl(`<div class="list-row"><div><strong>${it.title}</strong><div class="small">${(it.description||'').substring(0,200)}</div></div>
+          <div>${pdfLink}<br><button class="btn ghost" data-id="${k}" data-path="jobs">Delete</button></div></div>`);
+        box.appendChild(el);
+      });
+      setDeleteHandlers();
+    });
+
+    // PDFs
+    db.ref('pdfs').orderByChild('createdAt').on('value', snap => {
+      const box = document.getElementById('pdfsList'); box.innerHTML='';
+      const data = snap.val()||{};
+      Object.keys(data).reverse().forEach(k=>{
+        const it = data[k];
+        const el = mkEl(`<div class="list-row"><div><strong>${it.title}</strong><div class="small">Uploaded by: ${it.uploadedBy||'-'}</div></div>
+          <div>${it.fileUrl ? `<a target="_blank" href="${it.fileUrl}">Open PDF</a>` : '-'}<br><button class="btn ghost" data-id="${k}" data-path="pdfs">Delete</button></div></div>`);
+        box.appendChild(el);
+      });
+      setDeleteHandlers();
+    });
+
+    // Services
+    db.ref('cscServices').on('value', snap => {
+      const box = document.getElementById('servicesList'); box.innerHTML='';
+      const data = snap.val()||{};
+      Object.keys(data).reverse().forEach(k=>{
+        const it = data[k];
+        const el = mkEl(`<div class="list-row"><div><strong>${it.title}</strong><div class="small">${it.description||''}</div></div>
+          <div><button class="btn ghost" data-id="${k}" data-path="cscServices">Delete</button></div></div>`);
+        box.appendChild(el);
+      });
+      setDeleteHandlers();
+    });
+
+    // Homepage content load
+    db.ref('homepage').once('value').then(s => {
+      const v = s.val();
+      if(v && v.content) document.getElementById('homeText').value = v.content;
+    });
+  }
+
+  function setDeleteHandlers(){
+    document.querySelectorAll('.btn.ghost').forEach(b=>{
+      b.onclick = async (ev) => {
+        const id = b.getAttribute('data-id'), path = b.getAttribute('data-path');
+        if(!confirm('Delete this?')) return;
+        await db.ref(path + '/' + id).remove();
+      };
+    });
+  }
+
+</script>
+</body>
+</html>
