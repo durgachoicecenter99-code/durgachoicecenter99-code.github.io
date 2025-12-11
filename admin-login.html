@@ -1,45 +1,89 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>DurgaCSC — Admin Login</title>
-  <link rel="stylesheet" href="admin.css">
-  <!-- Firebase compat SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="firebase.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login - Durga CSC</title>
+
+<style>
+  body{
+    font-family: Arial;
+    background:#f1f5f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+  .box{
+    background:white;
+    padding:30px;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 0 20px rgba(0,0,0,0.1);
+    text-align:center;
+  }
+  input{
+    width:100%;
+    margin:10px 0;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+  }
+  button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+  }
+</style>
 </head>
+
 <body>
-  <div class="center-wrap">
-    <div class="card login-card">
-      <h2>Admin Login</h2>
-      <input id="email" placeholder="Email" value="admin@durgacsc.in" />
-      <input id="pass" type="password" placeholder="Password" />
-      <button id="loginBtn">Login</button>
-      <p id="msg" class="muted"></p>
-      <p class="small muted">Email: <strong>admin@durgacsc.in</strong></p>
-    </div>
-  </div>
 
-<script>
-  const loginBtn = document.getElementById('loginBtn');
-  const msg = document.getElementById('msg');
+<div class="box">
+  <h2>Admin Login</h2>
 
-  loginBtn.addEventListener('click', () => {
-    const e = document.getElementById('email').value.trim();
-    const p = document.getElementById('pass').value;
-    if(!e || !p){ msg.textContent = 'Email & Password both required'; return; }
-    msg.textContent = 'Signing in...';
-    auth.signInWithEmailAndPassword(e, p)
-      .then(_ => { msg.textContent = 'Success — Redirecting...'; window.location.href = 'admin-dashboard.html'; })
-      .catch(err => { msg.textContent = err.message; });
-  });
+  <input id="email" placeholder="Email" type="text">
+  <input id="password" placeholder="Password" type="password">
+  <button id="loginBtn">Login</button>
+</div>
 
-  // quick enter key
-  document.addEventListener('keydown', (ev) => {
-    if(ev.key === 'Enter') loginBtn.click();
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAdACqh6hsiA-ylP3cWxjrdGTYO7PnRLFc",
+    authDomain: "durgachoicecenter-admin.firebaseapp.com",
+    databaseURL: "https://durgachoicecenter-admin-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "durgachoicecenter-admin",
+    storageBucket: "durgachoicecenter-admin.firebasestorage.app",
+    messagingSenderId: "458140785138",
+    appId: "1:458140785138:web:eab9a7055725cce6a3736b",
+    measurementId: "G-7E9H77Y94F"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById("loginBtn").addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, pass)
+    .then(() => {
+      window.location.href = "dashboard.html";  // Dashboard page open
+    })
+    .catch(error => {
+      alert("Invalid Credentials: " + error.message);
+    });
   });
 </script>
+
 </body>
 </html>
